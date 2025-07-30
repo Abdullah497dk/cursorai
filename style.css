@@ -92,18 +92,24 @@ header p {
 
 nav {
 	background-color: #34495e;
-	padding: 1rem;
-	position: sticky; /* Make the navbar sticky */
-	top: 0;
+	padding: 25px;
+	position: relative; /* Initially below the header */
 	width: 100%; /* Ensure the navbar spans the full width */
-	z-index: 1000;
+	z-index: 1000; /* Ensure it stays above other elements */
 	transition: all 0.3s ease; /* Smooth transition for position and style */
-	animation: fadeIn 1.5s ease-in-out;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: auto; /* Ensure the navbar maintains its height */
 	display: flex; /* Use flexbox for alignment */
 	align-items: center; /* Center align items vertically */
 	justify-content: space-between; /* Space out content */
+}
+
+nav.scrolled {
+	position: fixed; /* Fix the navbar at the top when scrolled */
+	top: -1px;
+	left: 0;
+	background-color: #34495e; /* Keep the background color */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a stronger shadow when fixed */
 }
 
 .nav-links {
@@ -114,14 +120,22 @@ nav {
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	position: relative; /* Default position for desktop view */
-	transform: none; /* Ensure the menu is visible in desktop view */
-	width: auto; /* Reset width for desktop view */
-	height: auto; /* Reset height for desktop view */
-	background-color: transparent; /* No background for desktop view */
-	flex-direction: row; /* Horizontal layout for desktop view */
-	box-shadow: none; /* Remove box shadow for desktop view */
-	overflow: visible; /* No overflow handling for desktop view */
+	position: fixed; /* Ensure it stays fixed for mobile view */
+	top: 0;
+	left: 0; /* Start from the left */
+	width: 70%; /* Adjust width for mobile view */
+	height: 80%; /* Set height to 80% */
+	background-color: #34495e;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; /* Center align items */
+	margin-top: 20%; /* Add margin from the top */
+	border-radius: 0 30px 30px 0; /* Add rounded corners */
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+	overflow-y: auto; /* Allow scrolling if content overflows */
+	transform: translateX(-100%); /* Hide the menu by default (from the left) */
+	transition: transform 0.3s ease-in-out;
+	z-index: 1000;
 }
 
 .nav-links.active {
@@ -135,8 +149,10 @@ nav {
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
 	transition: background-color 0.3s, transform 0.3s;
-	font-size: clamp(0.9rem, 1.5vw, 1rem);
+	font-size: 1.5rem; /* Increase font size */
 	white-space: nowrap;
+	margin-bottom: 15px; /* Add spacing between links */
+	display: block; /* Ensure links are block-level elements */
 }
 
 .nav-links a:hover {
@@ -392,17 +408,19 @@ social-links {
 	}
 
 	.nav-links {
-		transform: translateX(150%); /* Ensure the menu is fully hidden by default */
+		transform: translateX(-100%); /* Ensure the menu is fully hidden by default (from the left) */
 		position: fixed;
 		top: 0;
-		right: 0;
+		left: 0;
 		width: 70%; /* Adjust width for mobile view */
-		height: 100vh;
+		height: 80%; /* Set height to 80% */
 		background-color: #34495e;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+		margin-top: 20%; /* Add margin from the top */
+		border-radius: 0 30px 30px 0; /* Add rounded corners */
+		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 		overflow-y: auto; /* Allow scrolling if content overflows */
 		transition: transform 0.3s ease-in-out;
 		z-index: 1000;
@@ -413,10 +431,9 @@ social-links {
 	}
 
 	.nav-links a {
-		font-size: 1.2rem;
-		padding: 1rem 2rem;
-		width: 80%;
-		text-align: center;
+		font-size: 1.7rem; /* Further increase font size for mobile view */
+		padding: 1rem 2rem; /* Adjust padding for better spacing */
+		margin-bottom: 20px; /* Increase spacing between links */
 	}
 }
 
