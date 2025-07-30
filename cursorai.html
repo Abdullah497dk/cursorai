@@ -129,11 +129,21 @@
 		// Hamburger menu functionality with animation
 		const hamburger = document.querySelector('.hamburger');
 		const navLinks = document.querySelector('.nav-links');
+		const navLinkItems = document.querySelectorAll('.nav-links a');
 
 		hamburger.addEventListener('click', () => {
 			hamburger.classList.toggle('active');
 			navLinks.classList.toggle('active');
 			document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+		});
+
+		// Close the navbar when a link is clicked
+		navLinkItems.forEach(link => {
+			link.addEventListener('click', () => {
+				hamburger.classList.remove('active');
+				navLinks.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			});
 		});
 
 		// Toggle navbar style on scroll

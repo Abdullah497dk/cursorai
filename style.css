@@ -26,7 +26,7 @@ body {
 	align-items: center;
 	min-height: 100vh;
 	background-color: #f5f5f5; /* Default background for other pages */
-	overflow-x: hidden;
+	overflow-x: hidden; /* Prevent horizontal scrolling */
 	scrollbar-color: #3498db #f5f5f5; /* Set thumb and track colors */
 	scrollbar-width: thin; /* Set scrollbar width */
 }
@@ -49,7 +49,8 @@ body::-webkit-scrollbar-track {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
-	width: 95%;
+	width: 100%; /* Ensure the container does not exceed the viewport width */
+	box-sizing: border-box; /* Include padding and border in width */
 	opacity: 0;
 	transform: translateY(20px);
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -99,6 +100,10 @@ nav {
 	transition: all 0.3s ease; /* Smooth transition for position and style */
 	animation: fadeIn 1.5s ease-in-out;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: auto; /* Ensure the navbar maintains its height */
+	display: flex; /* Use flexbox for alignment */
+	align-items: center; /* Center align items vertically */
+	justify-content: space-between; /* Space out content */
 }
 
 .nav-links {
@@ -109,20 +114,14 @@ nav {
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	position: fixed; /* Ensure it stays fixed for mobile view */
-	top: 0;
-	left: 0; /* Start from the left */
-	width: 70%; /* Adjust width for mobile view */
-	height: 100vh; /* Full height for mobile view */
-	background-color: #34495e;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-	overflow-y: auto; /* Allow scrolling if content overflows */
-	transform: translateX(-100%); /* Hide the menu by default (from the left) */
-	transition: transform 0.3s ease-in-out;
-	z-index: 1000;
+	position: relative; /* Default position for desktop view */
+	transform: none; /* Ensure the menu is visible in desktop view */
+	width: auto; /* Reset width for desktop view */
+	height: auto; /* Reset height for desktop view */
+	background-color: transparent; /* No background for desktop view */
+	flex-direction: row; /* Horizontal layout for desktop view */
+	box-shadow: none; /* Remove box shadow for desktop view */
+	overflow: visible; /* No overflow handling for desktop view */
 }
 
 .nav-links.active {
@@ -383,24 +382,27 @@ social-links {
 }
 
 @media (max-width: 768px) {
+	html, body {
+		width: 100%; /* Ensure the body does not exceed the viewport width */
+		overflow-x: hidden; /* Prevent horizontal scrolling */
+	}
+
 	.hamburger {
 		display: flex; /* Show hamburger menu for mobile view */
 	}
 
 	.nav-links {
-		transform: translateX(-100%); /* Ensure the menu is fully hidden by default (from the left) */
+		transform: translateX(150%); /* Ensure the menu is fully hidden by default */
 		position: fixed;
 		top: 0;
-		left: 0;
+		right: 0;
 		width: 70%; /* Adjust width for mobile view */
-		height: 80%; /* Set height to 80% */
+		height: 100vh;
 		background-color: #34495e;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center; /* Center align items */
-		margin-top: 20%; /* Add margin from the top */
-		border-radius: 0 30px 30px 0; /* Add rounded corners */
-		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+		align-items: center;
+		box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 		overflow-y: auto; /* Allow scrolling if content overflows */
 		transition: transform 0.3s ease-in-out;
 		z-index: 1000;
@@ -411,23 +413,16 @@ social-links {
 	}
 
 	.nav-links a {
-		font-size: 1.7rem; /* Increase font size */
-		padding: 1rem 2rem; /* Add padding for spacing */
+		font-size: 1.2rem;
+		padding: 1rem 2rem;
 		width: 80%;
 		text-align: center;
-		margin-bottom: 15px; /* Add spacing between links using margin */
-		display: block; /* Ensure links are block-level elements */
-	}
-
-	.nav-links a:hover {
-		background-color: #2c3e50;
-		transform: scale(1.05);
 	}
 }
 
 @media (max-width: 480px) {
 	.container {
-		padding: 10px;
+		padding: 15px; /* Adjust padding for smaller screens */
 	}
 
 	.content-section {
