@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth; /* Enable smooth scrolling globally */
+}
+
 body.homepage {
 	background-image: url('img/2.jpg'); /* Set the background image for the homepage */
 	background-size: cover;

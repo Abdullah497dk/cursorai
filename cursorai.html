@@ -170,6 +170,21 @@
 
 			elements.forEach(element => observer.observe(element));
 		});
+
+		// Enable smooth scrolling for internal links
+		document.addEventListener('DOMContentLoaded', () => {
+			const internalLinks = document.querySelectorAll('a[href^="#"]');
+			internalLinks.forEach(link => {
+				link.addEventListener('click', (event) => {
+					event.preventDefault();
+					const targetId = link.getAttribute('href').substring(1);
+					const targetElement = document.getElementById(targetId);
+					if (targetElement) {
+						targetElement.scrollIntoView({ behavior: 'smooth' });
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>
