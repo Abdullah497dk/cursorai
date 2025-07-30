@@ -118,28 +118,19 @@ nav.scrolled {
 
 .nav-links {
 	list-style: none;
-	display: flex;
+	display: flex; /* Ensure links are displayed in desktop view */
 	justify-content: center;
 	gap: 1rem;
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	position: fixed; /* Ensure it stays fixed for mobile view */
-	top: 0;
-	left: 0; /* Start from the left */
-	width: 70%; /* Adjust width for mobile view */
-	height: 80%; /* Set height to 80% */
-	background-color: #34495e;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center; /* Center align items */
-	margin-top: 20%; /* Add margin from the top */
-	border-radius: 0 30px 30px 0; /* Add rounded corners */
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-	overflow-y: auto; /* Allow scrolling if content overflows */
-	transform: translateX(-100%); /* Hide the menu by default (from the left) */
-	transition: transform 0.3s ease-in-out;
-	z-index: 1000;
+	position: relative; /* Default position for desktop view */
+	width: auto; /* Reset width for desktop view */
+	height: auto; /* Reset height for desktop view */
+	background-color: transparent; /* No background for desktop view */
+	flex-direction: row; /* Horizontal layout for desktop view */
+	box-shadow: none; /* Remove box shadow for desktop view */
+	overflow: visible; /* No overflow handling for desktop view */
 }
 
 .nav-links.active {
@@ -485,4 +476,87 @@ social-links {
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
+
+.contact-section {
+	background-color: #f8f9fa;
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 20px 0;
+}
+
+.contact-section h2 {
+	color: #2c3e50;
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+}
+
+.contact-details p {
+	font-size: 1.2rem;
+	color: #2c3e50;
+	margin: 0;
+}
+
+.contact-details a {
+	color: #3498db;
+	text-decoration: none;
+	font-size: 1.2rem;
+	transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+	color: #2980b9;
+}
+
+.contact-form {
+	margin-top: 2rem;
+	background-color: white;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.contact-form label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+	color: #2c3e50;
+}
+
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 1rem;
+}
+
+.contact-form button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem;
+}
+
+.contact-form button:hover {
+	background-color: #2980b9;
+	transform: scale(1.05);
 }
