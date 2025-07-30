@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Doğru Hoca - Olimpiyat Sayfası.">
+	<meta name="keywords" content="Olimpiyat, Eğitim, Yarışma">
+	<meta name="author" content="Doğru Hoca">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="styleolm.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+	<title>Doğru Hoca - Olimpiyat</title>
+</head>
+<body class="homepage">
+	<header>
+		<h1>Doğru Hoca</h1>
+		<p>Olimpiyat Sayfasına Hoş Geldiniz</p>
+	</header>
+
+	<nav>
+		<button class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<ul>
+			<li><a href="cursorai.html"><i class="fa-solid fa-house"></i> Anasayfa</a></li>
+			<li><a href="#hakkimda"><i class="fa-solid fa-address-card"></i> Hakkımda</a></li>
+			<li><a href="#videolar"><i class="fa-solid fa-video"></i> Videolar</a></li>
+			<li><a href="#dokumanlar"><i class="fa-solid fa-file-pdf"></i> Dökümanlar</a></li>
+			<li><a href="#iletisim"><i class="fa-solid fa-address-book"></i> İletişim</a></li>
+		</ul>
+	</nav>
+
+	<div class="container">
+		<section id="olmpiyat" class="content-section">
+			<h2 class="section-title">Olimpiyat Soruları</h2>
+            <!-- Sadece öğretmene gösterilecek -->
+            <div id="teacher-question-form" style="display:none;">
+                <h3>Yeni Soru Ekle (Sadece Öğretmen)</h3>
+                <form>
+					<textarea placeholder="Yeni soru yazınız..." rows="4" required></textarea>
+					<button type="submit">Gönder</button>
+				</form>
+            </div>
+			 <!-- Questions and answers -->
+			<div id="questions-container">
+				<h3>Gönderilen Sorular</h3>
+				<p>Henüz soru eklenmedi.</p>
+			</div>
+		</section>
+	</div>
+
+	<footer>
+		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
+	</footer>
+
+	<script>
+		 // Hamburger menu functionality
+		const hamburger = document.querySelector('.hamburger');
+		const navMenu = document.querySelector('nav ul');
+		const navLinks = document.querySelectorAll('nav a');
+
+		hamburger.addEventListener('click', () => {
+			hamburger.classList.toggle('active');
+			navMenu.classList.toggle('active');
+			document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+		});
+
+		navLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				hamburger.classList.remove('active');
+				navMenu.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			});
+		});
+
+		// Show teacher form if admin query parameter is present
+		const isTeacher = new URLSearchParams(window.location.search).get("admin") === "dogruhoca";
+
+		window.addEventListener('DOMContentLoaded', () => {
+			if (isTeacher) {
+				document.getElementById("teacher-question-form").style.display = "block";
+			}
+		});
+	</script>
+</body>
+</html>

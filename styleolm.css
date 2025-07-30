@@ -1,0 +1,287 @@
+body.homepage {
+	background-image: url('img/2.jpg'); /* Set the background image */
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed; /* Ensure the background stays fixed */
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 100vh;
+	overflow-x: hidden;
+	scrollbar-color: #3498db #f5f5f5; /* Set thumb and track colors */
+	scrollbar-width: thin; /* Set scrollbar width */
+}
+
+/* For Webkit-based browsers (Chrome, Edge, Safari) */
+body::-webkit-scrollbar {
+	width: 8px; /* Set scrollbar width */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #3498db; /* Set scrollbar thumb color */
+	border-radius: 4px; /* Add rounded corners to the thumb */
+}
+
+body::-webkit-scrollbar-track {
+	background-color: #f5f5f5; /* Set scrollbar track color */
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 95%;
+	animation: fadeIn 1s ease-in-out;
+}
+
+header {
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #2c3e50;
+	padding: 3rem 1rem;
+	text-align: center;
+	background-image: linear-gradient(to right, #2c3e50, #3498db);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	animation: slideDown 1s ease-in-out;
+}
+
+header h1 {
+	font-size: 3rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	margin: 0;
+}
+
+header p {
+	font-size: 1.5rem;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	margin-top: 10px;
+}
+
+nav {
+	background-color: #34495e;
+	padding: 1rem;
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 1.5s ease-in-out;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: clamp(0.9rem, 1.5vw, 1rem);
+	white-space: nowrap;
+}
+
+nav a:hover {
+	background-color: #2c3e50;
+	transform: scale(1.05);
+}
+
+.content-section {
+	background-color: white;
+	margin: 20px 0;
+	padding: clamp(15px, 3vw, 20px);
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeInUp 1s ease-in-out;
+}
+
+.section-title {
+	color: #2c3e50;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #3498db;
+	font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+footer {
+	width: 100%;
+	background-color: #2c3e50;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 2s ease-in-out;
+}
+
+footer p {
+	font-size: 1rem;
+}
+
+#teacher-question-form {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	animation: fadeInUp 1s ease-in-out;
+}
+
+#teacher-question-form h3 {
+	color: #2c3e50;
+	font-size: 1.5rem;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+#teacher-question-form textarea {
+	width: 100%;
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	resize: vertical;
+	font-size: 1rem;
+	margin-bottom: 15px;
+}
+
+#teacher-question-form button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem;
+}
+
+#teacher-question-form button:hover {
+	background-color: #2980b9;
+	transform: scale(1.05);
+}
+
+#questions-container {
+	margin-top: 20px;
+}
+
+#questions-container h3 {
+	color: #2c3e50;
+	font-size: 1.5rem;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.question {
+	background-color: #f8f9fa;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	animation: fadeInUp 1s ease-in-out;
+}
+
+.question p {
+	font-size: 1.1rem;
+	color: #2c3e50;
+}
+
+.answers {
+	margin-top: 15px;
+}
+
+.answers h4 {
+	margin-bottom: 10px;
+	color: #2c3e50;
+	font-size: 1.2rem;
+}
+
+.answers-list p {
+	background-color: #e9ecef;
+	padding: 12px;
+	border-radius: 6px;
+	margin-bottom: 10px;
+	font-size: 1rem;
+	color: #2c3e50;
+}
+
+.answer-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.answer-form textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	resize: vertical;
+	font-size: 1rem;
+}
+
+.answer-form button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem;
+}
+
+.answer-form button:hover {
+	background-color: #2980b9;
+	transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
