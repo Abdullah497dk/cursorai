@@ -103,9 +103,7 @@ nav {
 	transition: all 0.3s ease; /* Smooth transition for position and style */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: auto; /* Ensure the navbar maintains its height */
-	display: flex; /* Use flexbox for alignment */
-	align-items: center; /* Center align items vertically */
-	justify-content: space-between; /* Space out content */
+	
 }
 
 nav.scrolled {
@@ -118,9 +116,10 @@ nav.scrolled {
 
 .nav-links {
 	list-style: none;
-	display: flex; /* Ensure links are displayed in desktop view */
-	justify-content: center;
-	gap: 1rem;
+	display: flex; /* Ensure links are displayed in a row */
+	justify-content: center; /* Center-align links horizontally */
+	align-items: center; /* Center-align links vertically */
+	gap: 2rem; /* Add spacing between links */
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
@@ -144,9 +143,8 @@ nav.scrolled {
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
 	transition: background-color 0.3s, transform 0.3s;
-	font-size: 1.5rem; /* Increase font size */
+	font-size: 1rem; /* Adjust font size for desktop view */
 	white-space: nowrap;
-	margin-bottom: 15px; /* Add spacing between links */
 	display: block; /* Ensure links are block-level elements */
 }
 
@@ -426,7 +424,7 @@ social-links {
 	}
 
 	.nav-links a {
-		font-size: 1.7rem; /* Further increase font size for mobile view */
+		font-size: 1.7rem; /* Increase font size for mobile view */
 		padding: 1rem 2rem; /* Adjust padding for better spacing */
 		margin-bottom: 20px; /* Increase spacing between links */
 	}
