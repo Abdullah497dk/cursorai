@@ -610,3 +610,17 @@ social-links {
 	background-color: #2980b9;
 	transform: scale(1.05);
 }
+
+.contact-section div:last-child {
+	background-color: #e9f7fc; /* Softer background for better readability */
+	padding: 1.5rem; /* Increase padding for better spacing */
+	margin-top: 2rem; /* Add more spacing above the div */
+	border-radius: 10px; /* Slightly more rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhance shadow for depth */
+	font-size: 1.1rem; /* Slightly larger font size */
+	color: #2c3e50; /* Text color */
+	text-align: center; /* Center-align the text */
+	line-height: 1.8; /* Improve line spacing for readability */
+	font-style: italic; /* Add a subtle italic style */
+	border: 1px solid #b3d9e8; /* Add a border for better definition */
+}
