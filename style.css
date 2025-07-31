@@ -428,6 +428,35 @@ social-links {
 		padding: 1rem 2rem; /* Adjust padding for better spacing */
 		margin-bottom: 20px; /* Increase spacing between links */
 	}
+
+	.contact-section {
+		padding: 1.5rem; /* Reduce padding for smaller screens */
+	}
+
+	.contact-details p {
+		font-size: 1rem; /* Adjust font size for better readability */
+		text-align: center; /* Center-align text */
+	}
+
+	.contact-details a {
+		font-size: 1rem; /* Adjust font size for links */
+	}
+
+	.contact-form {
+		padding: 1rem; /* Adjust padding for smaller screens */
+		width: 90%; /* Ensure the form fits within the screen */
+		margin: 0 auto; /* Center the form horizontally */
+	}
+
+	.contact-form label {
+		font-size: 0.9rem; /* Adjust label font size */
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-size: 0.9rem; /* Adjust input and textarea font size */
+		padding: 10px; /* Reduce padding for inputs */
+	}
 }
 
 @media (max-width: 480px) {
@@ -441,6 +470,26 @@ social-links {
 
 	.video-card {
 		padding: 15px;
+	}
+
+	.contact-section {
+		padding: 1rem; /* Further reduce padding for very small screens */
+	}
+
+	.contact-details p {
+		font-size: 0.9rem; /* Further adjust font size */
+	}
+
+	.contact-form {
+		padding: 0.8rem; /* Further reduce padding for the form */
+		width: 95%; /* Ensure the form fits within the screen */
+		margin: 0 auto; /* Center the form horizontally */
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-size: 0.8rem; /* Further adjust input and textarea font size */
+		padding: 8px; /* Further reduce padding for inputs */
 	}
 }
 
@@ -523,7 +572,8 @@ social-links {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	max-width: 600px;
-	margin: 0 auto;
+	margin: 0 auto; /* Center the form horizontally */
+	box-sizing: border-box; /* Ensure padding does not affect width */
 }
 
 .contact-form label {
@@ -536,6 +586,8 @@ social-links {
 .contact-form input,
 .contact-form textarea {
 	width: 100%;
+	max-width: 100%; /* Prevent inputs from exceeding the container width */
+	box-sizing: border-box; /* Include padding and border in width */
 	padding: 12px;
 	margin-bottom: 1rem;
 	border: 1px solid #ccc;
