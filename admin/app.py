@@ -113,6 +113,8 @@ def olmpiyat():
     else:
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
+    
+
 # --- Logout ---
 @app.route("/logout")
 def logout():
