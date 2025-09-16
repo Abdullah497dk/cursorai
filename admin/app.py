@@ -102,6 +102,17 @@ def cursorai():
     else:
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
+    
+
+
+
+@app.route("/olmpiyat")
+def olmpiyat():
+    if "user_id" in session:
+        return render_template("olmpiyat.html")
+    else:
+        flash("Lütfen giriş yapın.")
+        return redirect(url_for("login"))
 # --- Logout ---
 @app.route("/logout")
 def logout():
