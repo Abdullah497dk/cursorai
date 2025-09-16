@@ -18,12 +18,12 @@
 	</header>
 
 	<nav>
-		<button class="hamburger">
+		<div class="hamburger">
 			<span></span>
 			<span></span>
 			<span></span>
-		</button>
-		<ul>
+		</div>
+		<ul class="nav-links">
 			<li><a href="cursorai.html"><i class="fa-solid fa-house"></i> Anasayfa</a></li>
 			<li><a href="#hakkimda"><i class="fa-solid fa-address-card"></i> Hakkımda</a></li>
 			<li><a href="#videolar"><i class="fa-solid fa-video"></i> Videolar</a></li>
@@ -56,23 +56,34 @@
 	</footer>
 
 	<script>
-		 // Hamburger menu functionality
+		 // Hamburger menu functionality with animation
 		const hamburger = document.querySelector('.hamburger');
-		const navMenu = document.querySelector('nav ul');
-		const navLinks = document.querySelectorAll('nav a');
+		const navLinks = document.querySelector('.nav-links');
+		const navLinkItems = document.querySelectorAll('.nav-links a');
 
 		hamburger.addEventListener('click', () => {
 			hamburger.classList.toggle('active');
-			navMenu.classList.toggle('active');
-			document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+			navLinks.classList.toggle('active');
+			document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
 		});
 
-		navLinks.forEach(link => {
+		// Close the navbar when a link is clicked
+		navLinkItems.forEach(link => {
 			link.addEventListener('click', () => {
 				hamburger.classList.remove('active');
-				navMenu.classList.remove('active');
+				navLinks.classList.remove('active');
 				document.body.style.overflow = 'auto';
 			});
+		});
+
+		// Toggle navbar style on scroll
+		window.addEventListener('scroll', function () {
+			const nav = document.querySelector('nav');
+			if (window.scrollY > document.querySelector('header').offsetHeight) {
+				nav.classList.add('scrolled');
+			} else {
+				nav.classList.remove('scrolled');
+			}
 		});
 
 		// Show teacher form if admin query parameter is present

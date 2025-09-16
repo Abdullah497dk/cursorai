@@ -624,3 +624,35 @@ social-links {
 	font-style: italic; /* Add a subtle italic style */
 	border: 1px solid #b3d9e8; /* Add a border for better definition */
 }
+
+.dashboard-links {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.dashboard-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	color: #2c3e50;
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-card i {
+	font-size: 2rem;
+	margin-bottom: 10px;
+	color: #3498db;
+}
+
+.dashboard-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
