@@ -98,7 +98,7 @@ def login():
 @app.route("/cursorai")
 def cursorai():
     if "user_id" in session:
-        return render_template("cursorai.html")
+        return render_template("index.html")
     else:
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
