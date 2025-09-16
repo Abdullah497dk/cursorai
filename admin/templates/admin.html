@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli</title>
+</head>
+<body>
+    <h1>İçerik Ekle</h1>
+    <form action="/add" method="POST">
+        <label>Kategori:</label>
+        <select name="kategori">
+            <option value="videolar">Video</option>
+            <option value="dokumanlar">Döküman</option>
+            <option value="linkler">Faydalı Link</option>
+        </select><br><br>
+        <input type="text" name="baslik" placeholder="Başlık"><br><br>
+        <input type="text" name="link" placeholder="Link"><br><br>
+        <textarea name="aciklama" placeholder="Açıklama"></textarea><br><br>
+        <button type="submit">Ekle</button>
+    </form>
+
+    <hr>
+    <h2>Videolar</h2>
+    <ul>
+        {% for v in videolar %}
+            <li><b>{{ v.baslik }}</b> - <a href="{{ v.link }}" target="_blank">Link</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Dökümanlar</h2>
+    <ul>
+        {% for d in dokumanlar %}
+            <li><b>{{ d.baslik }}</b> - <a href="{{ d.link }}" target="_blank">Link</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Faydalı Linkler</h2>
+    <ul>
+        {% for l in linkler %}
+            <li><b>{{ l.baslik }}</b> - <a href="{{ l.link }}" target="_blank">Link</a></li>
+        {% endfor %}
+    </ul>
+
+    <br><a href="/logout">Çıkış Yap</a>
+</body>
+</html>

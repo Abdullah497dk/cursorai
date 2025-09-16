@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Doğru Hoca - Yönetim Paneli">
+	<meta name="keywords" content="Dashboard, Yönetim, Doğru Hoca">
+	<meta name="author" content="Doğru Hoca">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Doğru Hoca - Yönetim Paneli</title>
+</head>
+<body>
+	<header>
+		<h1>Yönetim Paneli</h1>
+		<p>Sayfalarınızı kolayca yönetin</p>
+	</header>
+
+	<nav>
+		<div class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<ul class="nav-links">
+			<li><a href="cursorai.html"><i class="fa-solid fa-house"></i> Anasayfa</a></li>
+			<li><a href="olmpiyat.html"><i class="fa-solid fa-circle-question"></i> Olimpiyat</a></li>
+			<li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+		</ul>
+	</nav>
+
+	<div class="container">
+		<section class="content-section">
+			<h2 class="section-title">Sayfa Yönetimi</h2>
+
+			<!-- Video Management -->
+			<div class="dashboard-section">
+				<h3>Videoları Yönet</h3>
+				<form id="video-form">
+					<input type="text" id="video-title" placeholder="Video Başlığı" required>
+					<input type="url" id="video-link" placeholder="YouTube Linki" required>
+					<textarea id="video-description" placeholder="Video Açıklaması" rows="3" required></textarea>
+					<button type="button" onclick="addVideo()">Video Ekle</button>
+				</form>
+				<div id="video-list">
+					<h4>Mevcut Videolar</h4>
+					<ul></ul>
+				</div>
+			</div>
+
+			<!-- Link Management -->
+			<div class="dashboard-section">
+				<h3>Faydalı Linkleri Yönet</h3>
+				<form id="link-form">
+					<input type="text" id="link-title" placeholder="Link Başlığı" required>
+					<input type="url" id="link-url" placeholder="Link URL'si" required>
+					<button type="button" onclick="addLink()">Link Ekle</button>
+				</form>
+				<div id="link-list">
+					<h4>Mevcut Linkler</h4>
+					<ul></ul>
+				</div>
+			</div>
+
+			<!-- PDF Management -->
+			<div class="dashboard-section">
+				<h3>PDF Dökümanlarını Yönet</h3>
+				<form id="pdf-form">
+					<input type="text" id="pdf-title" placeholder="PDF Başlığı" required>
+					<input type="url" id="pdf-url" placeholder="PDF URL'si" required>
+					<button type="button" onclick="addPDF()">PDF Ekle</button>
+				</form>
+				<div id="pdf-list">
+					<h4>Mevcut PDF'ler</h4>
+					<ul></ul>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<footer>
+		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
+	</footer>
+
+	<script>
+		// Hamburger menu functionality
+		const hamburger = document.querySelector('.hamburger');
+		const navLinks = document.querySelector('.nav-links');
+
+		hamburger.addEventListener('click', () => {
+			hamburger.classList.toggle('active');
+			navLinks.classList.toggle('active');
+		});
+
+		// Video Management
+		function addVideo() {
+			const title = document.getElementById("video-title").value;
+			const link = document.getElementById("video-link").value;
+			const description = document.getElementById("video-description").value;
+
+			if (title && link && description) {
+				const videoList = document.querySelector("#video-list ul");
+				const listItem = document.createElement("li");
+				listItem.innerHTML = `<strong>${title}</strong> - <a href="${link}" target="_blank">İzle</a> <br> ${description} <button onclick="removeItem(this)">Sil</button>`;
+				videoList.appendChild(listItem);
+
+				// Clear form
+				document.getElementById("video-form").reset();
+			}
+		}
+
+		// Link Management
+		function addLink() {
+			const title = document.getElementById("link-title").value;
+			const url = document.getElementById("link-url").value;
+
+			if (title && url) {
+				const linkList = document.querySelector("#link-list ul");
+				const listItem = document.createElement("li");
+				listItem.innerHTML = `<strong>${title}</strong> - <a href="${url}" target="_blank">Git</a> <button onclick="removeItem(this)">Sil</button>`;
+				linkList.appendChild(listItem);
+
+				// Clear form
+				document.getElementById("link-form").reset();
+			}
+		}
+
+		// PDF Management
+		function addPDF() {
+			const title = document.getElementById("pdf-title").value;
+			const url = document.getElementById("pdf-url").value;
+
+			if (title && url) {
+				const pdfList = document.querySelector("#pdf-list ul");
+				const listItem = document.createElement("li");
+				listItem.innerHTML = `<strong>${title}</strong> - <a href="${url}" target="_blank">İndir</a> <button onclick="removeItem(this)">Sil</button>`;
+				pdfList.appendChild(listItem);
+
+				// Clear form
+				document.getElementById("pdf-form").reset();
+			}
+		}
+
+		// Remove Item
+		function removeItem(button) {
+			button.parentElement.remove();
+		}
+	</script>
+</body>
+</html>
