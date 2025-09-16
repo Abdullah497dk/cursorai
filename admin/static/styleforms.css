@@ -192,6 +192,84 @@ form p a:hover {
 	background-color: #3498db;
 }
 
+
+/* General button styling */
+button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 0.8rem 1.5rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+	background-color: #2980b9;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Role selection buttons */
+#step1 button {
+	width: 100%; /* Make buttons take full width */
+	margin: 0.5rem 0;
+	padding: 1rem;
+	background: linear-gradient(135deg, #6a11cb, #2575fc);
+	color: white;
+	font-size: 1.1rem;
+	font-weight: bold;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+#step1 button:hover {
+	background: linear-gradient(135deg, #5a0fbf, #1e63e6);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#step1 button:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit button styling */
+form button {
+	width: 100%; /* Make the submit button take full width */
+	padding: 1rem;
+	background: linear-gradient(135deg, #ff7e5f, #feb47b);
+	color: white;
+	font-size: 1.1rem;
+	font-weight: bold;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+form button:hover {
+	background: linear-gradient(135deg, #ff6a4d, #fd9c6b);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+form button:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Flash messages styling */
 .flashes {
 	margin-top: 1rem;
