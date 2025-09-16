@@ -1,0 +1,23 @@
+<!-- admin/templates/add_question.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Soru Ekle (Admin Paneli)</title>
+  <link rel="stylesheet" href="../../styleforms.css">
+</head>
+<body>
+  <h2>Soru Ekle</h2>
+
+  <form action="../add_question.php" method="POST" enctype="multipart/form-data">
+    <label for="title">Soru Başlığı / İçeriği:</label><br>
+    <textarea name="title" id="title" rows="4" required></textarea><br><br>
+
+    <label for="image">Görsel (isteğe bağlı):</label><br>
+    <input type="file" name="image" id="image" accept="image/*"><br><br>
+
+    <button type="submit">Soruyu Ekle</button>
+  </form>
+
+</body>
+</html>
