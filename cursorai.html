@@ -65,7 +65,7 @@
 
 		<section id="videolar" class="content-section">
 			<h2 class="section-title">Eğitim Videoları</h2>
-			<div class="video-container">
+			<div class="video-container" id="video-container">
 				<div class="video-card">
 					<h3>Ders 1: Giriş</h3>
 					<iframe class="responsive-iframe" src="https://www.youtube.com/embed/7h3KXm701oY?si=yKINmF7KK-pPUexH" 
@@ -86,6 +86,24 @@
 				</div>
 			</div>
 		</section>
+
+		<script>
+			fetch("admin/data/videolar.json")
+			  .then(response => response.json())
+			  .then(data => {
+				const container = document.getElementById("video-container");
+				container.innerHTML = "";
+				data.forEach(item => {
+				  container.innerHTML += `
+					<div class="video-card">
+					  <h3>${item.baslik}</h3>
+					  <iframe src="${item.link}" allowfullscreen></iframe>
+					  <p>${item.aciklama}</p>
+					</div>
+				  `;
+				});
+			  });
+			</script>
 
 		<section id="dokumanlar" class="content-section">
 			<h2 class="section-title">Ders Dökümanları</h2>
