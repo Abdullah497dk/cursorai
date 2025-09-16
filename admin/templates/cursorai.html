@@ -7,7 +7,8 @@
 	<meta name="keywords" content="Eğitim, Öğretim, Videolar, Dökümanlar, Faydalı Linkler">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="author" content="Doğru Hoca">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 	<script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
@@ -18,7 +19,7 @@
       });
    })();
 </script>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="../static/img/logo.png">
 	<title>Doğru Hoca - Kişisel Eğitim Portalı</title>
 </head>
 <body class="homepage">
@@ -167,9 +168,9 @@
 	</div>
 
 	<footer style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-		<img src="img/logo.png" alt="Developer Logo" style="border-radius: 50%; width: 50px; height: auto;">
+		<img src="../static/img/logo.png" alt="Developer Logo" style="border-radius: 50%; width: 50px; height: auto;">
 		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
-		<img src="img/dvlp.cc.logo.png" alt="Developer Logo" style="border-radius: 50%; width: 70px; height: auto;">
+		<img src="../static/img/dvlp.cc.logo.png" alt="Developer Logo" style="border-radius: 50%; width: 70px; height: auto;">
 	</footer>
 
 	<script>

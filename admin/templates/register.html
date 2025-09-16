@@ -6,15 +6,15 @@
 	<meta name="description" content="Doğru Hoca - Kayıt Ol">
 	<meta name="keywords" content="Kayıt, Öğretmen, Öğrenci">
 	<meta name="author" content="Doğru Hoca">
-	<link rel="stylesheet" href="styleforms.css">
-	<link rel="icon" type="image/png" href="../../img/logo.png">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styleforms.css') }}">
+	<link rel="icon" type="image/png" href="/static/img/logo.png">
 	<title>Doğru Hoca - Kayıt Ol</title>
 </head>
 <body>
 
 	<style>
 		body {
-			background-image: url('../../img/2.jpg');
+			background-image: url('../static/img/2.jpg');
 			background-size: cover;
 			background-position: center;
 			background-attachment: fixed;
@@ -40,7 +40,7 @@
 
 		<div id="student-form" style="display: none;">
 			<h2>Öğrenci Kayıt</h2>
-			<form action="register.php" method="POST">
+			<form action="/register" method="POST">
 				<input type="hidden" name="role" value="student">
 				<label for="class">Sınıf:</label>
 				<select id="class" name="class" required>
@@ -73,7 +73,7 @@
 
 		<div id="teacher-form" style="display: none;">
 			<h2>Öğretmen Kayıt</h2>
-			<form action="register.php" method="POST">
+			<form action="/register" method="POST">
 				<input type="hidden" name="role" value="teacher">
 				<label for="subject">Ders:</label>
 				<input type="text" id="subject" name="subject" placeholder="Dersinizi girin" required>
@@ -144,5 +144,16 @@
 			});
 		});
 	</script>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class="flashes">
+	{% for message in messages %}
+	  <li>{{ message }}</li>
+	{% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
+
 </body>
 </html>

@@ -6,25 +6,38 @@
 	<meta name="description" content="Doğru Hoca - Giriş Yap">
 	<meta name="keywords" content="Giriş, Öğretmen, Öğrenci">
 	<meta name="author" content="Doğru Hoca">
-	<link rel="stylesheet" href="styleforms.css">
-	<link rel="icon" type="image/png" href="../../img/logo.png">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styleforms.css') }}">
+    <link rel="icon" type="image/png" href="../static/img/logo.png">
 	<title>Doğru Hoca - Giriş Yap</title>
 </head>
 <body>
 	<style>
 		body {
-			background-image: url('../../img/2.jpg');
+			background-image: url('../static/img/2.jpg');
 			background-size: cover;
 			background-position: center;
 			background-attachment: fixed;
 		}
 	</style>
 	<header>
-		<h1>Dogruhoca</h1>
+		<h1>Doğru Hoca</h1>
 		<p>Eğitim ve Öğretim Portalına Hoş Geldiniz</p>
 	</header>
 
 	<div class="container">
+		<!-- Flash messages -->
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flashes">
+				<ul>
+					{% for message in messages %}
+						<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+		{% endwith %}
+
 		<form action="/login" method="POST">
 			<h2>Giriş Yap</h2>
 			<label for="role">Rol:</label>
@@ -37,7 +50,7 @@
 			<label for="password">Parola:</label>
 			<input type="password" id="password" name="password" placeholder="Parolanızı girin" required>
 			<button type="submit">Giriş Yap</button>
-			<p>Hesabınız yok mu? <a href="register.html">Kayıt Ol</a></p>
+			<p>Hesabınız yok mu? <a href="register">Kayıt Ol</a></p>
 		</form>
 	</div>
 
