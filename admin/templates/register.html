@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Doğru Hoca - Kayıt Ol">
+	<meta name="keywords" content="Kayıt, Öğretmen, Öğrenci">
+	<meta name="author" content="Doğru Hoca">
+	<link rel="stylesheet" href="styleforms.css">
+	<link rel="icon" type="image/png" href="img/logo.png">
+	<title>Doğru Hoca - Kayıt Ol</title>
+</head>
+<body>
+	<header>
+		<h1>Doğru Hoca</h1>
+		<p>Eğitim ve Öğretim Portalına Hoş Geldiniz</p>
+	</header>
+
+	<div class="container">
+			<div class="progress-bar">
+				<div class="step active">1</div>
+				<div class="line"></div>
+				<div class="step">2</div>
+			</div>
+
+		<div id="step1">
+			<h2>Rol Seçimi</h2>
+			<button id="student-button">Öğrenci</button>
+			<button id="teacher-button">Öğretmen</button>
+		</div>
+
+		<div id="student-form" style="display: none;">
+			<h2>Öğrenci Kayıt</h2>
+			<form action="register.php" method="POST">
+				<input type="hidden" name="role" value="student">
+				<label for="class">Sınıf:</label>
+				<select id="class" name="class" required>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+				<label for="name">İsim:</label>
+				<input type="text" id="name" name="name" placeholder="İsminizi girin" required>
+				<label for="surname">Soyisim:</label>
+				<input type="text" id="surname" name="surname" placeholder="Soyisminizi girin" required>
+				<label for="birthdate">Doğum Günü:</label>
+				<input type="date" id="birthdate" name="birthdate" required>
+				<label for="gender">Cinsiyet:</label>
+				<select id="gender" name="gender" required>
+					<option value="male">Erkek</option>
+					<option value="female">Kadın</option>
+					<option value="other">Diğer</option>
+				</select>
+				<label for="username">Kullanıcı Adı:</label>
+				<input type="text" id="username" name="username" placeholder="Kullanıcı adınızı girin" required>
+				<label for="password">Parola:</label>
+				<input type="password" id="password" name="password" placeholder="Parolanızı girin" required>
+				<label for="confirm_password">Parola (Tekrar):</label>
+				<input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
+				<button type="submit">Kayıt Ol</button>
+			</form>
+		</div>
+
+		<div id="teacher-form" style="display: none;">
+			<h2>Öğretmen Kayıt</h2>
+			<form action="register.php" method="POST">
+				<input type="hidden" name="role" value="teacher">
+				<label for="subject">Ders:</label>
+				<input type="text" id="subject" name="subject" placeholder="Dersinizi girin" required>
+				<label for="name">İsim:</label>
+				<input type="text" id="name" name="name" placeholder="İsminizi girin" required>
+				<label for="surname">Soyisim:</label>
+				<input type="text" id="surname" name="surname" placeholder="Soyisminizi girin" required>
+				<label for="birthdate">Doğum Günü:</label>
+				<input type="date" id="birthdate" name="birthdate" required>
+				<label for="gender">Cinsiyet:</label>
+				<select id="gender" name="gender" required>
+					<option value="male">Erkek</option>
+					<option value="female">Kadın</option>
+					<option value="other">Diğer</option>
+				</select>
+				<label for="username">Kullanıcı Adı:</label>
+				<input type="text" id="username" name="username" placeholder="Kullanıcı adınızı girin" required>
+				<label for="password">Parola:</label>
+				<input type="password" id="password" name="password" placeholder="Parolanızı girin" required>
+				<label for="confirm_password">Parola (Tekrar):</label>
+				<input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
+				<button type="submit">Kayıt Ol</button>
+			</form>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
+	</footer>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// Add animation to progress bar and steps
+			const progressBar = document.querySelector('.progress-bar');
+			const step1 = document.getElementById('step1');
+			const studentForm = document.getElementById('student-form');
+			const teacherForm = document.getElementById('teacher-form');
+
+			// Observer for animations
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+					}
+				});
+			}, { threshold: 0.1 });
+
+			observer.observe(progressBar);
+			observer.observe(step1);
+
+			// Show the appropriate form based on role selection and update progress bar
+			document.getElementById('student-button').addEventListener('click', function () {
+				step1.style.display = 'none';
+				studentForm.style.display = 'block';
+				studentForm.classList.add('visible');
+				document.querySelector('.progress-bar .step:nth-child(1)').classList.remove('active');
+				document.querySelector('.progress-bar .line').classList.add('active');
+				document.querySelector('.progress-bar .step:nth-child(3)').classList.add('active');
+			});
+
+			document.getElementById('teacher-button').addEventListener('click', function () {
+				step1.style.display = 'none';
+				teacherForm.style.display = 'block';
+				teacherForm.classList.add('visible');
+				document.querySelector('.progress-bar .step:nth-child(1)').classList.remove('active');
+				document.querySelector('.progress-bar .line').classList.add('active');
+				document.querySelector('.progress-bar .step:nth-child(3)').classList.add('active');
+			});
+		});
+	</script>
+</body>
+</html>
