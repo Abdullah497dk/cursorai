@@ -13,7 +13,7 @@ UPLOAD_FOLDER = "static/profile_pics"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # sadece belirli kullanıcı admin paneli görebilsin
-ALLOWED_ADMIN_USERNAME = "abdullah"  # burayı kendi kullanıcı adına göre değiştir
+ALLOWED_ADMIN_USERNAME = "AbdullahAdrainMorsy"  # burayı kendi kullanıcı adına göre değiştir
 
 # --- Veritabanı oluşturma ---
 def init_db():
