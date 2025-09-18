@@ -2,6 +2,39 @@
 <html>
 <head>
   <title>Kullanıcı Listesi</title>
+  <style>
+    table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+img.profile-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+}
+  </style>
 </head>
 <body>
   <h2>Kullanıcılar</h2>
@@ -38,12 +71,14 @@
         <td>{{ u[11] }}</td> <!-- school_name -->
         <td>{{ u[12] }}</td> <!-- gmail -->
         <td>
-        {% if u[13] %}
-            <img src="{{ url_for('static', filename='profile_pics/' ~ u[13]) }}" width="50">
-        {% else %}
-            Yok
-        {% endif %}
-        </td>
+            {% if u[13] %}
+              <a href="{{ url_for('static', filename='profile_pics/' ~ u[13]) }}" download="{{ u[1] }}_profile.jpg">
+                <img src="{{ url_for('static', filename='profile_pics/' ~ u[13]) }}" class="profile-thumb">
+              </a>
+            {% else %}
+              Yok
+            {% endif %}
+          </td>
     </tr>
     {% endfor %}
   </table>
