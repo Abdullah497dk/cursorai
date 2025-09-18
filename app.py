@@ -4,6 +4,9 @@ from flask_bcrypt import Bcrypt
 import os
 from werkzeug.utils import secure_filename
 
+import csv
+from flask import Response
+
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 bcrypt = Bcrypt(app)
@@ -168,6 +171,32 @@ def list_users():
         users = c.fetchall()
 
     return render_template("users.html", users=users)
+
+@app.route("/admin/export_users")
+def export_users():
+    if "username" not in session or session["username"] != ALLOWED_ADMIN_USERNAME:
+        flash("Yetkiniz yok.")
+        return redirect(url_for("login"))
+
+    with sqlite3.connect(DB_NAME) as conn:
+        c = conn.cursor()
+        c.execute("""SELECT id, role, username, name, surname, birthdate, gender, class, subject,
+                            phone, school_number, school_name, gmail, profile_picture
+                     FROM users""")
+        users = c.fetchall()
+
+    # CSV oluştur
+    def generate():
+        data = csv.writer([])
+        header = ["ID", "Role", "Username", "Name", "Surname", "Birthdate", "Gender", "Class",
+                  "Subject", "Phone", "School Number", "School Name", "Gmail", "Profile Picture"]
+        yield ",".join(header) + "\n"
+        for u in users:
+            row = [str(i) if i is not None else "" for i in u]
+            yield ",".join(row) + "\n"
+
+    return Response(generate(), mimetype="text/csv",
+                    headers={"Content-Disposition": "attachment;filename=users.csv"})
 
 # --- Logout ---
 @app.route("/logout")
