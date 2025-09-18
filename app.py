@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
 import sqlite3
 from flask_bcrypt import Bcrypt
 import os
+import csv
+from io import StringIO
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
@@ -102,9 +104,6 @@ def cursorai():
     else:
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
-    
-
-
 
 @app.route("/olmpiyat")
 def olmpiyat():
@@ -113,7 +112,50 @@ def olmpiyat():
     else:
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
-    
+
+# --- Kullanıcıları listeleme ---
+
+DB_NAME = "database.db"
+ALLOWED_ADMIN_USERNAME = "AbdullahMorsy"  # burayı değiştir
+
+@app.route("/admin/users")
+def list_users():
+    # sadece belirlenen kullanıcı adı görebilsin
+    if "username" not in session or session["username"] != ALLOWED_ADMIN_USERNAME:
+        flash("Yetkiniz yok.")
+        return redirect(url_for("login"))
+
+    with sqlite3.connect(DB_NAME) as conn:
+        c = conn.cursor()
+        c.execute("SELECT id, role, username, name, surname, birthdate, gender, class, subject FROM users")
+        users = c.fetchall()
+
+    return render_template("users.html", users=users)
+
+# --- Kullanıcıları CSV olarak dışa aktarma ---
+@app.route("/admin/users/export")
+def export_users():
+    if "role" not in session or session["role"] != "admin":
+        flash("Yetkiniz yok.")
+        return redirect(url_for("login"))
+
+    with sqlite3.connect(DB_NAME) as conn:
+        c = conn.cursor()
+        c.execute("SELECT id, role, username, name, surname, birthdate, gender, class, subject FROM users")
+        rows = c.fetchall()
+        headers = [desc[0] for desc in c.description]
+
+    si = StringIO()
+    cw = csv.writer(si)
+    cw.writerow(headers)
+    cw.writerows(rows)
+
+    output = si.getvalue()
+    return Response(
+        output,
+        mimetype="text/csv",
+        headers={"Content-Disposition": "attachment;filename=users.csv"}
+    )
 
 # --- Logout ---
 @app.route("/logout")

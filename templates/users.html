@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kullanıcı Listesi</title>
+</head>
+<body>
+  <h2>Kullanıcılar</h2>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Rol</th>
+      <th>Kullanıcı Adı</th>
+      <th>Ad</th>
+      <th>Soyad</th>
+      <th>Doğum Tarihi</th>
+      <th>Cinsiyet</th>
+      <th>Sınıf</th>
+      <th>Ders</th>
+    </tr>
+    {% for u in users %}
+    <tr>
+      <td>{{ u[0] }}</td>
+      <td>{{ u[1] }}</td>
+      <td>{{ u[2] }}</td>
+      <td>{{ u[3] }}</td>
+      <td>{{ u[4] }}</td>
+      <td>{{ u[5] }}</td>
+      <td>{{ u[6] }}</td>
+      <td>{{ u[7] }}</td>
+      <td>{{ u[8] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a href="{{ url_for('export_users') }}">CSV olarak indir</a>
+</body>
+</html>
