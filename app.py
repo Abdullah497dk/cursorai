@@ -38,6 +38,20 @@ def init_db():
                     )''')
         conn.commit()
 
+# bu database silmeden yeni sutunlar eklemek icin
+# def migrate_users_table():
+#     with sqlite3.connect(DB_NAME) as conn:
+#         c = conn.cursor()
+#         try:
+#             c.execute("ALTER TABLE users ADD COLUMN phone TEXT;")
+#             c.execute("ALTER TABLE users ADD COLUMN school_number TEXT;")
+#             c.execute("ALTER TABLE users ADD COLUMN school_name TEXT;")
+#             c.execute("ALTER TABLE users ADD COLUMN gmail TEXT;")
+#             c.execute("ALTER TABLE users ADD COLUMN profile_picture TEXT;")
+#             conn.commit()
+#             print("Users tablosu güncellendi.")
+#         except sqlite3.OperationalError:
+#             print("Sütunlar zaten var, atlandı.")
 # --- Ana sayfa ---
 @app.route("/")
 def home():
@@ -164,4 +178,5 @@ def logout():
 
 if __name__ == "__main__":
     init_db()
+    # migrate_users_table()  # sadece yeni column eklemek icin
     app.run(host="0.0.0.0", port=5000)
