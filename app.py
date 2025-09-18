@@ -1,15 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
 import sqlite3
 from flask_bcrypt import Bcrypt
 import os
-import csv
-from io import StringIO
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 bcrypt = Bcrypt(app)
 
 DB_NAME = "database.db"
+UPLOAD_FOLDER = "static/profile_pics"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# sadece belirli kullanıcı admin paneli görebilsin
+ALLOWED_ADMIN_USERNAME = "abdullah"  # burayı kendi kullanıcı adına göre değiştir
 
 # --- Veritabanı oluşturma ---
 def init_db():
@@ -25,7 +29,12 @@ def init_db():
                         birthdate TEXT,
                         gender TEXT,
                         class TEXT,
-                        subject TEXT
+                        subject TEXT,
+                        phone TEXT,
+                        school_number TEXT,
+                        school_name TEXT,
+                        gmail TEXT,
+                        profile_picture TEXT
                     )''')
         conn.commit()
 
@@ -49,19 +58,36 @@ def register():
 
         hashed_pw = bcrypt.generate_password_hash(password).decode("utf-8")
 
-        # Öğrenci bilgileri
-        class_ = request.form.get("class")
-        subject = request.form.get("subject")
+        # Ortak bilgiler
         name = request.form.get("name")
         surname = request.form.get("surname")
         birthdate = request.form.get("birthdate")
         gender = request.form.get("gender")
 
+        # Öğrenci bilgileri
+        class_ = request.form.get("class")
+        phone = request.form.get("phone")
+        school_number = request.form.get("school_number")
+        school_name = request.form.get("school_name")
+        gmail = request.form.get("gmail")
+
+        # Öğretmen bilgileri
+        subject = request.form.get("subject")
+
+        # Profil fotoğrafı
+        file = request.files.get("profile_picture")
+        filename = None
+        if file and file.filename != "":
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+
         try:
             with sqlite3.connect(DB_NAME) as conn:
                 c = conn.cursor()
-                c.execute("INSERT INTO users (role, username, password, name, surname, birthdate, gender, class, subject) VALUES (?,?,?,?,?,?,?,?,?)",
-                          (role, username, hashed_pw, name, surname, birthdate, gender, class_, subject))
+                c.execute("""INSERT INTO users 
+                    (role, username, password, name, surname, birthdate, gender, class, subject, phone, school_number, school_name, gmail, profile_picture)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (role, username, hashed_pw, name, surname, birthdate, gender, class_, subject, phone, school_number, school_name, gmail, filename))
                 conn.commit()
             flash("Kayıt başarılı! Giriş yapabilirsiniz.")
             return redirect(url_for("login"))
@@ -113,49 +139,21 @@ def olmpiyat():
         flash("Lütfen giriş yapın.")
         return redirect(url_for("login"))
 
-# --- Kullanıcıları listeleme ---
-
-DB_NAME = "database.db"
-ALLOWED_ADMIN_USERNAME = "AbdullahMorsy"  # burayı değiştir
-
+# --- Kullanıcıları listele (sadece izinli kullanıcı) ---
 @app.route("/admin/users")
 def list_users():
-    # sadece belirlenen kullanıcı adı görebilsin
     if "username" not in session or session["username"] != ALLOWED_ADMIN_USERNAME:
         flash("Yetkiniz yok.")
         return redirect(url_for("login"))
 
     with sqlite3.connect(DB_NAME) as conn:
         c = conn.cursor()
-        c.execute("SELECT id, role, username, name, surname, birthdate, gender, class, subject FROM users")
+        c.execute("""SELECT id, role, username, name, surname, birthdate, gender, class, subject,
+                            phone, school_number, school_name, gmail, profile_picture
+                     FROM users""")
         users = c.fetchall()
 
     return render_template("users.html", users=users)
-
-# --- Kullanıcıları CSV olarak dışa aktarma ---
-@app.route("/admin/users/export")
-def export_users():
-    if "role" not in session or session["role"] != "admin":
-        flash("Yetkiniz yok.")
-        return redirect(url_for("login"))
-
-    with sqlite3.connect(DB_NAME) as conn:
-        c = conn.cursor()
-        c.execute("SELECT id, role, username, name, surname, birthdate, gender, class, subject FROM users")
-        rows = c.fetchall()
-        headers = [desc[0] for desc in c.description]
-
-    si = StringIO()
-    cw = csv.writer(si)
-    cw.writerow(headers)
-    cw.writerows(rows)
-
-    output = si.getvalue()
-    return Response(
-        output,
-        mimetype="text/csv",
-        headers={"Content-Disposition": "attachment;filename=users.csv"}
-    )
 
 # --- Logout ---
 @app.route("/logout")

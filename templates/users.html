@@ -7,27 +7,43 @@
   <h2>Kullanıcılar</h2>
   <table border="1">
     <tr>
-      <th>ID</th>
-      <th>Rol</th>
-      <th>Kullanıcı Adı</th>
-      <th>Ad</th>
-      <th>Soyad</th>
-      <th>Doğum Tarihi</th>
-      <th>Cinsiyet</th>
-      <th>Sınıf</th>
-      <th>Ders</th>
+        <th>ID</th>
+        <th>Rol</th>
+        <th>Kullanıcı Adı</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Doğum Tarihi</th>
+        <th>Cinsiyet</th>
+        <th>Sınıf</th>
+        <th>Ders</th>
+        <th>Telefon</th>
+        <th>Okul No</th>
+        <th>Okul Adı</th>
+        <th>Gmail</th>
+        <th>Profil Fotoğrafı</th>
     </tr>
     {% for u in users %}
     <tr>
-      <td>{{ u[0] }}</td>
-      <td>{{ u[1] }}</td>
-      <td>{{ u[2] }}</td>
-      <td>{{ u[3] }}</td>
-      <td>{{ u[4] }}</td>
-      <td>{{ u[5] }}</td>
-      <td>{{ u[6] }}</td>
-      <td>{{ u[7] }}</td>
-      <td>{{ u[8] }}</td>
+        <td>{{ u[0] }}</td>
+        <td>{{ u[1] }}</td>
+        <td>{{ u[2] }}</td>
+        <td>{{ u[3] }}</td>
+        <td>{{ u[4] }}</td>
+        <td>{{ u[5] }}</td>
+        <td>{{ u[6] }}</td>
+        <td>{{ u[7] }}</td>
+        <td>{{ u[8] }}</td>
+        <td>{{ u[9] }}</td> <!-- phone -->
+        <td>{{ u[10] }}</td> <!-- school_number -->
+        <td>{{ u[11] }}</td> <!-- school_name -->
+        <td>{{ u[12] }}</td> <!-- gmail -->
+        <td>
+        {% if u[13] %}
+            <img src="{{ url_for('static', filename='profile_pics/' ~ u[13]) }}" width="50">
+        {% else %}
+            Yok
+        {% endif %}
+        </td>
     </tr>
     {% endfor %}
   </table>

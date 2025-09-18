@@ -40,7 +40,7 @@
 
 		<div id="student-form" style="display: none;">
 			<h2>Öğrenci Kayıt</h2>
-			<form action="/register" method="POST">
+			<form action="/register" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="role" value="student">
 				<label for="class">Sınıf:</label>
 				<select id="class" name="class" required>
@@ -61,6 +61,16 @@
 					<option value="female">Kadın</option>
 					<option value="other">Diğer</option>
 				</select>
+				<label for="phone">Telefon Numarası:</label>
+				<input type="tel" id="phone" name="phone" placeholder="Telefon numaranızı girin" required>
+				<label for="school_number">Okul Numarası:</label>
+				<input type="text" id="school_number" name="school_number" placeholder="Okul numaranızı girin" required>
+				<label for="school_name">Okul Adı:</label>
+				<input type="text" id="school_name" name="school_name" placeholder="Okul adınızı girin" required>
+				<label for="gmail">Gmail:</label>
+				<input type="email" id="gmail" name="gmail" placeholder="Gmail adresinizi girin" required>
+				<label for="profile_picture">Profil Fotoğrafı:</label>
+				<input type="file" id="profile_picture" name="profile_picture" accept="image/*" required>
 				<label for="username">Kullanıcı Adı:</label>
 				<input type="text" id="username" name="username" placeholder="Kullanıcı adınızı girin" required>
 				<label for="password">Parola:</label>
