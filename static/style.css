@@ -426,7 +426,7 @@ social-links {
 	.nav-links a {
 		font-size: 0.9rem; /* Increase font size for mobile view */
 		padding: 1rem 2rem; /* Adjust padding for better spacing */
-		margin-bottom: 8px; /* Increase spacing between links */
+		margin-bottom: 5px; /* Increase spacing between links */
 	}
 
 	.contact-section {

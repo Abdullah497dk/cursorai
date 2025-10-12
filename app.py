@@ -147,7 +147,7 @@ def cursorai():
 
 @app.route("/olmpiyat")
 def olmpiyat():
-        return render_template("olmpiyat.html")
+    return render_template("olmpiyat.html")
 
 # --- Kullanıcıları listele (sadece izinli kullanıcı) ---
 @app.route("/admin/users")

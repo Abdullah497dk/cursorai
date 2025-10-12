@@ -7,7 +7,7 @@
 	<meta name="keywords" content="Olimpiyat, Eğitim, Yarışma">
 	<meta name="author" content="Doğru Hoca">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="styleolm.css">
+	
 	<link rel="stylesheet" href="{{ url_for('static', filename='styleolm.css') }}">
     <link rel="icon" type="image/png" href="img/logo.png">
 	<title>Doğru Hoca - Olimpiyat</title>
@@ -25,12 +25,13 @@
 			<span></span>
 		</div>
 		<ul class="nav-links">
-			<li><a href="{{ url_for('cursorai') }}"><i class="fa-solid fa-house"></i> Anasayfa</a></li>
-			<li><a href="#hakkimda"><i class="fa-solid fa-address-card"></i> Hakkımda</a></li>
-			<li><a href="#videolar"><i class="fa-solid fa-video"></i> Videolar</a></li>
-			<li><a href="#dokumanlar"><i class="fa-solid fa-file-pdf"></i> Dökümanlar</a></li>
-			<li><a href="#iletisim"><i class="fa-solid fa-address-book"></i> İletişim</a></li>
-			<li><a href="{{ url_for('login') }}" class="login-button"><i class="fa-solid fa-sign-in-alt"></i> Giriş Yap</a></li>
+			<li><a href="{{ url_for('cursorai') }}">
+				<i class="fa-solid fa-house"></i> Anasayfa
+			</a></li>
+			
+			<li><a href="{{ url_for('login') }}" class="login-button">
+				<i class="fa-solid fa-sign-in-alt"></i> Giriş Yap
+			</a></li>
 		</ul>
 	</nav>
 
