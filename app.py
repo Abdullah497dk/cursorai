@@ -58,7 +58,7 @@ def init_db():
 # --- Ana sayfa ---
 @app.route("/")
 def home():
-    return redirect(url_for("login"))
+    return render_template("index.html")
 
 # --- Register ---
 @app.route("/register", methods=["GET", "POST"])
@@ -142,19 +142,12 @@ def login():
 # --- Dashboard ---
 @app.route("/cursorai")
 def cursorai():
-    if "user_id" in session:
-        return render_template("index.html")
-    else:
-        flash("Lütfen giriş yapın.")
-        return redirect(url_for("login"))
+    return render_template("index.html")
+
 
 @app.route("/olmpiyat")
 def olmpiyat():
-    if "user_id" in session:
         return render_template("olmpiyat.html")
-    else:
-        flash("Lütfen giriş yapın.")
-        return redirect(url_for("login"))
 
 # --- Kullanıcıları listele (sadece izinli kullanıcı) ---
 @app.route("/admin/users")
