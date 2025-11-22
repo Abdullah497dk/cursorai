@@ -81,8 +81,8 @@ require_once 'functions.php';
 			<span></span>
 		</div>
 		<ul class="nav-links">
-            <li><a href="olmpiyat.php">
-                <i class="fa-solid fa-circle-question"></i> Olmpiyat
+            <li><a href="olimpiyat.php">
+                <i class="fa-solid fa-trophy"></i> Olimpiyat
             </a></li>
 			<li><a href="#hakkimda">
                 <i class="fa-solid fa-address-card"></i> Hakkımda

@@ -102,6 +102,28 @@ function initDatabase() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
     
+    // Olmpiyat Questions table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS olmpiyat_questions (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        question_text TEXT NOT NULL,
+        image_path VARCHAR(255),
+        created_by INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+    
+    // Olmpiyat Answers table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS olmpiyat_answers (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        question_id INT NOT NULL,
+        answer_text TEXT NOT NULL,
+        user_id INT NOT NULL,
+        user_name VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (question_id) REFERENCES olmpiyat_questions(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+    
     // Insert default site info
     $stmt = $pdo->prepare("INSERT IGNORE INTO site_info (`key`, value) VALUES (?, ?)");
     $stmt->execute(['about_text', 'Merhaba, Ben Doğru Hoca. [Buraya kendi özgeçmişinizi ve deneyimlerinizi ekleyebilirsiniz]']);
