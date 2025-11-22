@@ -7,6 +7,17 @@ header('Content-Type: application/json');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Parse ID from URL (e.g., /api/videos/123 or /api/videos.php?id=123)
+$requestUri = $_SERVER['REQUEST_URI'];
+$id = null;
+if (preg_match('/\/api\/videos\.php\/(\d+)/', $requestUri, $matches)) {
+    $id = $matches[1];
+} elseif (preg_match('/\/api\/videos\/(\d+)/', $requestUri, $matches)) {
+    $id = $matches[1];
+} elseif (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+
 try {
     $pdo = getDB();
     
@@ -39,7 +50,6 @@ try {
             jsonResponse(['error' => 'Yetkiniz yok'], 403);
         }
         
-        $id = $_GET['id'] ?? null;
         if (!$id) {
             jsonResponse(['error' => 'ID gerekli'], 400);
         }
@@ -62,7 +72,6 @@ try {
             jsonResponse(['error' => 'Yetkiniz yok'], 403);
         }
         
-        $id = $_GET['id'] ?? null;
         if (!$id) {
             jsonResponse(['error' => 'ID gerekli'], 400);
         }

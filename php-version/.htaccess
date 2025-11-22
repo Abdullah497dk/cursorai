@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# API rewrite rules
+RewriteRule ^api/videos/([0-9]+)$ api/videos.php?id=$1 [L,QSA]
+RewriteRule ^api/documents/([0-9]+)$ api/documents.php?id=$1 [L,QSA]
+RewriteRule ^api/links/([0-9]+)$ api/links.php?id=$1 [L,QSA]
