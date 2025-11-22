@@ -1,0 +1,319 @@
+/* General body styling */
+body.homepage {
+	background-image: url('img/2.jpg'); /* Set the background image */
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed; /* Ensure the background stays fixed */
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 100vh;
+	overflow-x: hidden; /* Prevent horizontal scrolling */
+	scrollbar-color: #3498db #f5f5f5; /* Set thumb and track colors */
+	scrollbar-width: thin; /* Set scrollbar width */
+}
+
+/* Scrollbar styling for Webkit-based browsers */
+body::-webkit-scrollbar {
+	width: 8px; /* Set scrollbar width */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #3498db; /* Set scrollbar thumb color */
+	border-radius: 4px; /* Add rounded corners to the thumb */
+}
+
+body::-webkit-scrollbar-track {
+	background-color: #f5f5f5; /* Set scrollbar track color */
+}
+
+/* Container styling */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 95%;
+	animation: fadeIn 1s ease-in-out;
+}
+
+/* Header styling */
+header {
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #2c3e50;
+	padding: 3rem 1rem;
+	text-align: center;
+	background-image: linear-gradient(to right, #2c3e50, #3498db);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	animation: slideDown 1s ease-in-out;
+}
+
+header h1 {
+	font-size: 3rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	margin: 0;
+}
+
+header p {
+	font-size: 1.5rem;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	margin-top: 10px;
+}
+
+/* Navbar styling */
+nav {
+	background-color: #34495e;
+	padding: 1rem;
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Navbar links styling */
+.nav-links {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	position: relative; /* Default position for desktop view */
+	width: auto; /* Reset width for desktop view */
+	height: auto; /* Reset height for desktop view */
+	background-color: transparent; /* No background for desktop view */
+	flex-direction: row; /* Horizontal layout for desktop view */
+	box-shadow: none; /* Remove box shadow for desktop view */
+	overflow: visible; /* No overflow handling for desktop view */
+}
+
+.nav-links a {
+	color: white;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem; /* Adjust font size for desktop view */
+	white-space: nowrap;
+	display: block; /* Ensure links are block-level elements */
+}
+
+.nav-links a:hover {
+	background-color: #2c3e50;
+	transform: scale(1.05);
+}
+
+/* Hamburger menu styling */
+.hamburger {
+	display: none; /* Hide hamburger menu by default for desktop view */
+	cursor: pointer;
+	flex-direction: column;
+	gap: 5px;
+	z-index: 1100; /* Ensure it stays above other elements */
+	position: fixed;
+	top: 1rem;
+	right: 2rem; /* Keep hamburger on the right */
+}
+
+.hamburger span {
+	width: 30px;
+	height: 3px;
+	background-color: white;
+	border-radius: 2px;
+	transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active span:nth-child(1) {
+	transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+	transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+	body {
+		padding: 0; /* Remove any extra padding */
+		margin: 0; /* Remove any extra margin */
+		overflow-x: hidden; /* Prevent horizontal scrolling */
+	}
+
+	.hamburger {
+		display: flex; /* Show hamburger menu for mobile view */
+	}
+
+	.nav-links {
+		transform: translateX(-100%); /* Ensure the menu is fully hidden by default (off-screen to the left) */
+		position: fixed;
+		top: 50%; /* Center vertically */
+		left: 0; /* Align to the left */
+		width: 70%; /* Adjust width for mobile view */
+		height: auto; /* Adjust height to fit content */
+		background-color: #34495e;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start; /* Align items to the left */
+		border-radius: 0 30px 30px 0; /* Add rounded corners on the right */
+		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+		overflow-y: auto; /* Allow scrolling if content overflows */
+		transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+		z-index: 1000;
+		padding: 1rem; /* Add padding for better spacing */
+		visibility: hidden; /* Hide the menu initially */
+		opacity: 0; /* Make it invisible initially */
+		transform: translateY(-50%) translateX(-100%); /* Adjust for both axes */
+	}
+
+	.nav-links.active {
+		transform: translateY(-50%) translateX(0); /* Slide the menu into view when active */
+		visibility: visible; /* Make the menu visible */
+		opacity: 1; /* Fully display the menu */
+	}
+
+	.nav-links.inactive {
+		transform: translateY(-50%) translateX(-100%); /* Slide the menu out of view */
+		visibility: hidden; /* Hide the menu */
+		opacity: 0; /* Make it invisible */
+	}
+
+	.nav-links a {
+		font-size: 1.2rem; /* Adjust font size for mobile view */
+		padding: 1rem 2rem; /* Adjust padding for better spacing */
+		margin-bottom: 10px; /* Increase spacing between links */
+		text-align: left; /* Align text to the left */
+	}
+
+	.container {
+		width: 100%; /* Ensure the container spans the full width */
+		padding: 15px; /* Add padding for better spacing */
+		box-sizing: border-box; /* Include padding in width calculation */
+	}
+
+	.content-section {
+		padding: 15px;
+		margin: 10px 0;
+	}
+
+	#teacher-question-form {
+		padding: 15px;
+		margin: 10px 0;
+	}
+
+	#questions-container {
+		padding: 15px;
+		margin: 10px 0;
+	}
+}
+
+/* Extra small devices (phones, less than 480px) */
+@media (max-width: 480px) {
+	body {
+		font-size: 14px; /* Adjust font size for smaller screens */
+	}
+
+	.container {
+		padding: 10px; /* Reduce padding for smaller screens */
+	}
+
+	.nav-links a {
+		font-size: 1rem; /* Adjust font size for smaller screens */
+		padding: 0.8rem 1.5rem;
+	}
+
+	.content-section {
+		padding: 10px;
+	}
+
+	#teacher-question-form {
+		padding: 10px;
+	}
+
+	#questions-container {
+		padding: 10px;
+	}
+}
+
+/* Content section styling */
+.content-section {
+	background-color: white;
+	margin: 20px 0;
+	padding: clamp(15px, 3vw, 20px);
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeInUp 1s ease-in-out;
+}
+
+.section-title {
+	color: #2c3e50;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #3498db;
+	font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Footer styling */
+footer {
+	width: 100%;
+	background-color: #2c3e50;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 2s ease-in-out;
+}
+
+footer p {
+	font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
