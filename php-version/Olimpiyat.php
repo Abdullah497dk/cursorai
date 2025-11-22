@@ -8,7 +8,7 @@ require_once 'functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olmpiyat - Doğru Hoca</title>
+    <title>Olimpiyat - Doğru Hoca</title>
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="icon" type="image/png" href="static/img/logo.png">
@@ -29,7 +29,7 @@ require_once 'functions.php';
         </div>
         <ul class="nav-links">
             <li><a href="index.php"><i class="fa-solid fa-home"></i> Ana Sayfa</a></li>
-            <li><a href="olmpiyat.php"><i class="fa-solid fa-trophy"></i> Olmpiyat</a></li>
+            <li><a href="olmpiyat.php"><i class="fa-solid fa-trophy"></i> Olimpiyat</a></li>
             <?php if (isLoggedIn()): ?>
             <li class="user-menu">
                 <a href="#" class="user-button" onclick="toggleUserMenu(event)">
