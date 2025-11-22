@@ -10,8 +10,8 @@ Hostinger Panel → Databases → MySQL → Create New Database
 `php-version/config.php` dosyasını aç ve Hostinger bilgilerini gir:
 ```php
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'u123456789_dogruhoca');  // Hostinger'dan
-define('DB_USER', 'u123456789_admin');      // Hostinger'dan
+define('DB_NAME', 'Dogruhoca1');  // Hostinger'dan
+define('DB_USER', 'Dogruhoca1');      // Hostinger'dan
 define('DB_PASS', 'YourPassword123');       // Senin şifren
 define('SITE_URL', 'https://yourdomain.com');
 ```

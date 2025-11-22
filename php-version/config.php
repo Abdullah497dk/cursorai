@@ -2,12 +2,12 @@
 // Database Configuration
 // HOSTINGER AYARLARI - Hostinger'dan aldığınız bilgileri buraya girin
 define('DB_HOST', 'localhost');  // Genellikle localhost
-define('DB_NAME', 'u123456789_dogruhoca');  // Hostinger database adı
-define('DB_USER', 'u123456789_admin');  // Hostinger kullanıcı adı
-define('DB_PASS', 'YourPassword123');  // Hostinger şifresi
+define('DB_NAME', 'Dogruhoca1');  // Hostinger database adı
+define('DB_USER', 'Dogruhoca1');  // Hostinger kullanıcı adı
+define('DB_PASS', 'Dogruhoca1');  // Hostinger şifresi
 
 // Site Configuration
-define('SITE_URL', 'https://yourdomain.com');  // Sitenizin URL'si
+define('SITE_URL', 'https://lightskyblue-cod-902795.hostingersite.com/');  // Sitenizin URL'si
 define('ADMIN_USERNAMES', ['AbdullahAdrainMorsy', 'DogruHoca']);  // Admin kullanıcıları
 
 // Upload Folders
