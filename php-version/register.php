@@ -61,40 +61,80 @@ $flash = getFlashMessage();
             background-attachment: fixed;
         }
         
-        .role-selection {
+        /* Progress Bar */
+        .progress-bar {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            align-items: center;
             justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
         }
         
-        .role-selection button {
-            flex: 1;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+        .progress-bar .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .progress-bar .step.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .progress-bar .line {
+            width: 100px;
+            height: 3px;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+        
+        .progress-bar .line.active {
+            background: #3498db;
+        }
+        
+        /* Role Selection Buttons */
+        #step1 {
+            text-align: center;
+        }
+        
+        #step1 h2 {
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+        
+        #step1 button {
+            width: 200px;
+            padding: 1.5rem 2rem;
+            margin: 0.5rem;
+            font-size: 1.2rem;
             border: 2px solid #3498db;
             background: white;
             color: #3498db;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            display: inline-block;
         }
         
-        .role-selection button.active {
+        #step1 button:hover {
             background: #3498db;
             color: white;
-        }
-        
-        .role-selection button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Doğru Hoca</h1>
-        <p>Eğitim ve Öğretim Portalı</p>
+        <p>Eğitim ve Öğretim Portalına Hoş Geldiniz</p>
     </header>
 
     <div class="container">
@@ -106,12 +146,22 @@ $flash = getFlashMessage();
         </div>
         <?php endif; ?>
 
-        <div class="role-selection">
-            <button type="button" onclick="showForm('student')" id="student-btn" class="active">Öğrenci</button>
-            <button type="button" onclick="showForm('teacher')" id="teacher-btn">Öğretmen</button>
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active" id="progress-step1">1</div>
+            <div class="line" id="progress-line"></div>
+            <div class="step" id="progress-step2">2</div>
         </div>
 
-        <div id="student-form">
+        <!-- Step 1: Role Selection -->
+        <div id="step1">
+            <h2>Rol Seçimi</h2>
+            <button type="button" id="student-button">Öğrenci</button>
+            <button type="button" id="teacher-button">Öğretmen</button>
+        </div>
+
+        <!-- Step 2: Student Form -->
+        <div id="student-form" style="display: none;">
             <h2>Öğrenci Kayıt</h2>
             <form action="register.php" method="POST">
                 <input type="hidden" name="role" value="student">
@@ -143,9 +193,11 @@ $flash = getFlashMessage();
                 <label for="confirm_password">Parola (Tekrar):</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
                 <button type="submit">Kayıt Ol</button>
+                <button type="button" onclick="goBack()">Geri</button>
             </form>
         </div>
 
+        <!-- Step 2: Teacher Form -->
         <div id="teacher-form" style="display: none;">
             <h2>Öğretmen Kayıt</h2>
             <form action="register.php" method="POST">
@@ -167,6 +219,7 @@ $flash = getFlashMessage();
                 <label for="confirm_password">Parola (Tekrar):</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
                 <button type="submit">Kayıt Ol</button>
+                <button type="button" onclick="goBack()">Geri</button>
             </form>
         </div>
 
@@ -180,23 +233,28 @@ $flash = getFlashMessage();
     </footer>
 
     <script>
-        function showForm(role) {
-            const studentForm = document.getElementById('student-form');
-            const teacherForm = document.getElementById('teacher-form');
-            const studentBtn = document.getElementById('student-btn');
-            const teacherBtn = document.getElementById('teacher-btn');
+        // Role selection
+        document.getElementById('student-button').addEventListener('click', function() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('student-form').style.display = 'block';
+            document.getElementById('progress-step2').classList.add('active');
+            document.getElementById('progress-line').classList.add('active');
+        });
 
-            if (role === 'student') {
-                studentForm.style.display = 'block';
-                teacherForm.style.display = 'none';
-                studentBtn.classList.add('active');
-                teacherBtn.classList.remove('active');
-            } else {
-                studentForm.style.display = 'none';
-                teacherForm.style.display = 'block';
-                studentBtn.classList.remove('active');
-                teacherBtn.classList.add('active');
-            }
+        document.getElementById('teacher-button').addEventListener('click', function() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('teacher-form').style.display = 'block';
+            document.getElementById('progress-step2').classList.add('active');
+            document.getElementById('progress-line').classList.add('active');
+        });
+
+        // Go back function
+        function goBack() {
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('student-form').style.display = 'none';
+            document.getElementById('teacher-form').style.display = 'none';
+            document.getElementById('progress-step2').classList.remove('active');
+            document.getElementById('progress-line').classList.remove('active');
         }
     </script>
 </body>
