@@ -2,8 +2,8 @@
 // Database Configuration
 // HOSTINGER AYARLARI - Hostinger'dan aldığınız bilgileri buraya girin
 define('DB_HOST', 'localhost');  // Genellikle localhost
-define('DB_NAME', 'Dogruhoca1');  // Hostinger database adı
-define('DB_USER', 'Dogruhoca1');  // Hostinger kullanıcı adı
+define('DB_NAME', 'u988284287_Dogruhoca1');  // Hostinger database adı
+define('DB_USER', 'u988284287_Dogruhoca1');  // Hostinger kullanıcı adı
 define('DB_PASS', 'Dogruhoca1');  // Hostinger şifresi
 
 // Site Configuration
