@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
 	<meta name="keywords" content="Giriş, Öğretmen, Öğrenci">
 	<meta name="author" content="Doğru Hoca">
 	<link rel="stylesheet" href="{{ url_for('static', filename='styleforms.css') }}">
-    <link rel="icon" type="image/png" href="../static/img/logo.png">
+	<link rel="icon" type="image/png" href="../static/img/logo.png">
 	<title>Doğru Hoca - Giriş Yap</title>
 </head>
+
 <body>
 	<style>
 		body {
@@ -28,13 +30,13 @@
 		<!-- Flash messages -->
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
-			<div class="flashes">
-				<ul>
-					{% for message in messages %}
-						<li>{{ message }}</li>
-					{% endfor %}
-				</ul>
-			</div>
+		<div class="flashes">
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
 		{% endif %}
 		{% endwith %}
 
@@ -42,6 +44,7 @@
 			<h2>Giriş Yap</h2>
 			<label for="role">Rol:</label>
 			<select id="role" name="role" required>
+				<option value="admin">Admin</option>
 				<option value="teacher">Öğretmen</option>
 				<option value="student">Öğrenci</option>
 			</select>
@@ -59,4 +62,5 @@
 		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
 	</footer>
 </body>
+
 </html>

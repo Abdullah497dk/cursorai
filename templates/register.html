@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
 	<link rel="icon" type="image/png" href="/static/img/logo.png">
 	<title>Doğru Hoca - Kayıt Ol</title>
 </head>
+
 <body>
 
 	<style>
@@ -26,11 +28,11 @@
 	</header>
 
 	<div class="container">
-			<div class="progress-bar">
-				<div class="step active">1</div>
-				<div class="line"></div>
-				<div class="step">2</div>
-			</div>
+		<div class="progress-bar">
+			<div class="step active">1</div>
+			<div class="line"></div>
+			<div class="step">2</div>
+		</div>
 
 		<div id="step1">
 			<h2>Rol Seçimi</h2>
@@ -49,12 +51,8 @@
 					<option value="11">11</option>
 					<option value="12">12</option>
 				</select>
-				<label for="name">İsim:</label>
-				<input type="text" id="name" name="name" placeholder="İsminizi girin" required>
-				<label for="surname">Soyisim:</label>
-				<input type="text" id="surname" name="surname" placeholder="Soyisminizi girin" required>
-				<label for="birthdate">Doğum Günü:</label>
-				<input type="date" id="birthdate" name="birthdate" required>
+				<label for="fullname">Ad Soyad:</label>
+				<input type="text" id="fullname" name="fullname" placeholder="Adınızı ve soyadınızı girin" required>
 				<label for="gender">Cinsiyet:</label>
 				<select id="gender" name="gender" required>
 					<option value="male">Erkek</option>
@@ -63,20 +61,17 @@
 				</select>
 				<label for="phone">Telefon Numarası:</label>
 				<input type="tel" id="phone" name="phone" placeholder="Telefon numaranızı girin" required>
-				<label for="school_number">Okul Numarası:</label>
-				<input type="text" id="school_number" name="school_number" placeholder="Okul numaranızı girin" required>
 				<label for="school_name">Okul Adı:</label>
 				<input type="text" id="school_name" name="school_name" placeholder="Okul adınızı girin" required>
-				<label for="gmail">Gmail:</label>
-				<input type="email" id="gmail" name="gmail" placeholder="Gmail adresinizi girin" required>
-				<label for="profile_picture">Profil Fotoğrafı:</label>
-				<input type="file" id="profile_picture" name="profile_picture" accept="image/*" required>
+				<label for="gmail">E-posta:</label>
+				<input type="email" id="gmail" name="gmail" placeholder="E-posta adresinizi girin" required>
 				<label for="username">Kullanıcı Adı:</label>
 				<input type="text" id="username" name="username" placeholder="Kullanıcı adınızı girin" required>
 				<label for="password">Parola:</label>
 				<input type="password" id="password" name="password" placeholder="Parolanızı girin" required>
 				<label for="confirm_password">Parola (Tekrar):</label>
-				<input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
+				<input type="password" id="confirm_password" name="confirm_password"
+					placeholder="Parolanızı tekrar girin" required>
 				<button type="submit">Kayıt Ol</button>
 			</form>
 		</div>
@@ -85,14 +80,10 @@
 			<h2>Öğretmen Kayıt</h2>
 			<form action="/register" method="POST">
 				<input type="hidden" name="role" value="teacher">
+				<label for="fullname">Ad Soyad:</label>
+				<input type="text" id="fullname" name="fullname" placeholder="Adınızı ve soyadınızı girin" required>
 				<label for="subject">Ders:</label>
 				<input type="text" id="subject" name="subject" placeholder="Dersinizi girin" required>
-				<label for="name">İsim:</label>
-				<input type="text" id="name" name="name" placeholder="İsminizi girin" required>
-				<label for="surname">Soyisim:</label>
-				<input type="text" id="surname" name="surname" placeholder="Soyisminizi girin" required>
-				<label for="birthdate">Doğum Günü:</label>
-				<input type="date" id="birthdate" name="birthdate" required>
 				<label for="gender">Cinsiyet:</label>
 				<select id="gender" name="gender" required>
 					<option value="male">Erkek</option>
@@ -104,7 +95,8 @@
 				<label for="password">Parola:</label>
 				<input type="password" id="password" name="password" placeholder="Parolanızı girin" required>
 				<label for="confirm_password">Parola (Tekrar):</label>
-				<input type="password" id="confirm_password" name="confirm_password" placeholder="Parolanızı tekrar girin" required>
+				<input type="password" id="confirm_password" name="confirm_password"
+					placeholder="Parolanızı tekrar girin" required>
 				<button type="submit">Kayıt Ol</button>
 			</form>
 		</div>
@@ -158,15 +150,16 @@
 		});
 	</script>
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-  <ul class="flashes">
-	{% for message in messages %}
-	  <li>{{ message }}</li>
-	{% endfor %}
-  </ul>
-{% endif %}
-{% endwith %}
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul class="flashes">
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
 
 </body>
+
 </html>
