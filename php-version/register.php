@@ -53,6 +53,43 @@ $flash = getFlashMessage();
     <title>Kayıt Ol - Doğru Hoca</title>
     <link rel="stylesheet" href="static/styleforms.css">
     <link rel="icon" type="image/png" href="static/img/logo.png">
+    <style>
+        body {
+            background-image: url('static/img/2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .role-selection {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .role-selection button {
+            flex: 1;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .role-selection button.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .role-selection button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -70,8 +107,8 @@ $flash = getFlashMessage();
         <?php endif; ?>
 
         <div class="role-selection">
-            <button onclick="showForm('student')" id="student-btn" class="active">Öğrenci</button>
-            <button onclick="showForm('teacher')" id="teacher-btn">Öğretmen</button>
+            <button type="button" onclick="showForm('student')" id="student-btn" class="active">Öğrenci</button>
+            <button type="button" onclick="showForm('teacher')" id="teacher-btn">Öğretmen</button>
         </div>
 
         <div id="student-form">

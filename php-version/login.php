@@ -38,6 +38,14 @@ $flash = getFlashMessage();
     <title>Giriş Yap - Doğru Hoca</title>
     <link rel="stylesheet" href="static/styleforms.css">
     <link rel="icon" type="image/png" href="static/img/logo.png">
+    <style>
+        body {
+            background-image: url('static/img/2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
     <header>
