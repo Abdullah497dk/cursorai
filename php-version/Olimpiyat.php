@@ -123,11 +123,22 @@ require_once 'functions.php';
 
         async function loadQuestions() {
             try {
+                console.log('Loading questions from API...');
                 const response = await fetch('api/Olimpiyat-questions.php');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('Received data:', data);
+                
                 displayQuestions(data.questions || []);
             } catch (error) {
                 console.error('Sorular yüklenemedi:', error);
+                const container = document.getElementById('questions-container');
+                container.innerHTML = '<div style="text-align: center; padding: 3rem; color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i><p>Sorular yüklenirken bir hata oluştu: ' + error.message + '</p></div>';
             }
         }
 
@@ -151,13 +162,13 @@ require_once 'functions.php';
                     
                     <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #ecf0f1;">
                         <h4 style="font-size: 1rem; color: #34495e; margin-bottom: 1rem;">
-                            <i class="fas fa-comments"></i> Cevaplar (${q.answers.length})
+                            <i class="fas fa-comments"></i> Cevaplar (${(q.answers || []).length})
                         </h4>
-                        ${q.answers.map(a => `
+                        ${(q.answers || []).map(a => `
                             <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
                                 <p style="color: #2c3e50; margin-bottom: 0.5rem;">${escapeHtml(a.answer_text)}</p>
                                 <p style="font-size: 0.85rem; color: #7f8c8d;">
-                                    <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name)}</span> • ${formatDate(a.created_at)}
+                                    <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name || a.username || 'Anonim')}</span> • ${formatDate(a.created_at)}
                                     ${isAdmin ? `<button onclick="deleteAnswer(${a.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; font-size: 0.8rem;"><i class="fas fa-trash"></i></button>` : ''}
                                 </p>
                             </div>
