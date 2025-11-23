@@ -10,9 +10,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Parse ID from URL
 $requestUri = $_SERVER['REQUEST_URI'];
 $id = null;
-if (preg_match('/\/api\/olmpiyat-answers\.php\/(\d+)/', $requestUri, $matches)) {
+if (preg_match('/\/api\/Olimpiyat-answers\.php\/(\d+)/', $requestUri, $matches)) {
     $id = $matches[1];
-} elseif (preg_match('/\/api\/olmpiyat-answers\/(\d+)/', $requestUri, $matches)) {
+} elseif (preg_match('/\/api\/Olimpiyat-answers\/(\d+)/', $requestUri, $matches)) {
     $id = $matches[1];
 } elseif (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -35,7 +35,7 @@ try {
         $user = $stmt->fetch();
         $userName = $user['name'] ?? $_SESSION['username'];
         
-        $stmt = $pdo->prepare("INSERT INTO olmpiyat_answers (question_id, answer_text, user_id, user_name) VALUES (?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO olimpiyat_answers (question_id, answer_text, user_id, user_name) VALUES (?, ?, ?, ?)");
         $stmt->execute([
             $data['question_id'],
             $data['answer_text'],
@@ -55,7 +55,7 @@ try {
             jsonResponse(['error' => 'ID gerekli'], 400);
         }
         
-        $stmt = $pdo->prepare("DELETE FROM olmpiyat_answers WHERE id=?");
+        $stmt = $pdo->prepare("DELETE FROM olimpiyat_answers WHERE id=?");
         $stmt->execute([$id]);
         
         jsonResponse(['success' => true]);

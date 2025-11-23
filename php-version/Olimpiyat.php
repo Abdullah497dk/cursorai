@@ -29,7 +29,7 @@ require_once 'functions.php';
         </div>
         <ul class="nav-links">
             <li><a href="index.php"><i class="fa-solid fa-home"></i> Ana Sayfa</a></li>
-            <li><a href="olmpiyat.php"><i class="fa-solid fa-trophy"></i> Olimpiyat</a></li>
+            <li><a href="Olimpiyat.php"><i class="fa-solid fa-trophy"></i> Olimpiyat</a></li>
             <?php if (isLoggedIn()): ?>
             <li class="user-menu">
                 <a href="#" class="user-button" onclick="toggleUserMenu(event)">
@@ -123,7 +123,7 @@ require_once 'functions.php';
 
         async function loadQuestions() {
             try {
-                const response = await fetch('/api/olmpiyat-questions.php');
+                const response = await fetch('api/Olimpiyat-questions.php');
                 const data = await response.json();
                 displayQuestions(data.questions || []);
             } catch (error) {
@@ -200,7 +200,7 @@ require_once 'functions.php';
             }
 
             try {
-                const response = await fetch('/api/olmpiyat-answers.php', {
+                const response = await fetch('api/Olimpiyat-answers.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -240,7 +240,7 @@ require_once 'functions.php';
             }
 
             try {
-                const response = await fetch('/api/olmpiyat-questions.php', {
+                const response = await fetch('api/Olimpiyat-questions.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -261,7 +261,7 @@ require_once 'functions.php';
             if (!confirm('Bu soruyu silmek istediğinizden emin misiniz? Tüm cevaplar da silinecek.')) return;
 
             try {
-                const response = await fetch(`/api/olmpiyat-questions.php?id=${id}`, { method: 'DELETE' });
+                const response = await fetch(`api/Olimpiyat-questions.php?id=${id}`, { method: 'DELETE' });
                 if (response.ok) {
                     loadQuestions();
                 }
@@ -274,7 +274,7 @@ require_once 'functions.php';
             if (!confirm('Bu cevabı silmek istediğinizden emin misiniz?')) return;
 
             try {
-                const response = await fetch(`/api/olmpiyat-answers.php?id=${id}`, { method: 'DELETE' });
+                const response = await fetch(`api/Olimpiyat-answers.php?id=${id}`, { method: 'DELETE' });
                 if (response.ok) {
                     loadQuestions();
                 }

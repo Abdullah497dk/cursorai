@@ -10,9 +10,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Parse ID from URL
 $requestUri = $_SERVER['REQUEST_URI'];
 $id = null;
-if (preg_match('/\/api\/olmpiyat-questions\.php\/(\d+)/', $requestUri, $matches)) {
+if (preg_match('/\/api\/Olimpiyat-questions\.php\/(\d+)/', $requestUri, $matches)) {
     $id = $matches[1];
-} elseif (preg_match('/\/api\/olmpiyat-questions\/(\d+)/', $requestUri, $matches)) {
+} elseif (preg_match('/\/api\/Olimpiyat-questions\/(\d+)/', $requestUri, $matches)) {
     $id = $matches[1];
 } elseif (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -25,7 +25,7 @@ try {
         // Get all questions with their answers
         $stmt = $pdo->query("
             SELECT q.*, u.username as creator_username
-            FROM olmpiyat_questions q
+            FROM olimpiyat_questions q
             LEFT JOIN users u ON q.created_by = u.id
             ORDER BY q.created_at DESC
         ");
@@ -35,7 +35,7 @@ try {
         foreach ($questions as &$question) {
             $stmt = $pdo->prepare("
                 SELECT a.*, u.username
-                FROM olmpiyat_answers a
+                FROM olimpiyat_answers a
                 LEFT JOIN users u ON a.user_id = u.id
                 WHERE a.question_id = ?
                 ORDER BY a.created_at ASC
@@ -58,7 +58,7 @@ try {
         
         // Handle image upload
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = __DIR__ . '/../static/olmpiyat_images/';
+            $uploadDir = __DIR__ . '/../static/olimpiyat_images/';
             if (!file_exists($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
@@ -71,12 +71,12 @@ try {
                 $targetPath = $uploadDir . $fileName;
                 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-                    $imagePath = 'olmpiyat_images/' . $fileName;
+                    $imagePath = 'olimpiyat_images/' . $fileName;
                 }
             }
         }
         
-        $stmt = $pdo->prepare("INSERT INTO olmpiyat_questions (question_text, image_path, created_by) VALUES (?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO olimpiyat_questions (question_text, image_path, created_by) VALUES (?, ?, ?)");
         $stmt->execute([
             $questionText,
             $imagePath,
@@ -96,7 +96,7 @@ try {
         }
         
         // Get image path before deleting
-        $stmt = $pdo->prepare("SELECT image_path FROM olmpiyat_questions WHERE id=?");
+        $stmt = $pdo->prepare("SELECT image_path FROM olimpiyat_questions WHERE id=?");
         $stmt->execute([$id]);
         $question = $stmt->fetch();
         
@@ -108,7 +108,7 @@ try {
             }
         }
         
-        $stmt = $pdo->prepare("DELETE FROM olmpiyat_questions WHERE id=?");
+        $stmt = $pdo->prepare("DELETE FROM olimpiyat_questions WHERE id=?");
         $stmt->execute([$id]);
         
         jsonResponse(['success' => true]);
