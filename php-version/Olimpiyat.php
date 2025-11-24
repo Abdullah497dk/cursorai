@@ -143,52 +143,71 @@ require_once 'functions.php';
         }
 
         function displayQuestions(questions) {
+            console.log('displayQuestions called with:', questions);
             const container = document.getElementById('questions-container');
+            console.log('Container element:', container);
+            
+            if (!container) {
+                console.error('Container not found!');
+                return;
+            }
             
             if (questions.length === 0) {
                 container.innerHTML = '<div style="text-align: center; padding: 3rem; color: #7f8c8d;"><i class="fas fa-inbox"></i><p>Henüz soru eklenmemiş</p></div>';
                 return;
             }
 
-            container.innerHTML = questions.map(q => `
-                <div class="video-card" style="margin-bottom: 2rem;">
-                    <h3>${escapeHtml(q.question_text)}</h3>
-                    ${q.image_path ? `<img src="static/${escapeHtml(q.image_path)}" alt="Soru görseli" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">` : ''}
-                    <p style="font-size: 0.85rem; color: #7f8c8d;">
-                        <i class="fas fa-user"></i> ${escapeHtml(q.creator_username || 'Admin')} • 
-                        <i class="fas fa-clock"></i> ${formatDate(q.created_at)}
-                        ${isAdmin ? `<button onclick="deleteQuestion(${q.id})" style="background: #e74c3c; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; margin-left: 1rem;"><i class="fas fa-trash"></i> Sil</button>` : ''}
-                    </p>
-                    
-                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #ecf0f1;">
-                        <h4 style="font-size: 1rem; color: #34495e; margin-bottom: 1rem;">
-                            <i class="fas fa-comments"></i> Cevaplar (${(q.answers || []).length})
-                        </h4>
-                        ${(q.answers || []).map(a => `
-                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
-                                <p style="color: #2c3e50; margin-bottom: 0.5rem;">${escapeHtml(a.answer_text)}</p>
-                                <p style="font-size: 0.85rem; color: #7f8c8d;">
-                                    <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name || a.username || 'Anonim')}</span> • ${formatDate(a.created_at)}
-                                    ${isAdmin ? `<button onclick="deleteAnswer(${a.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; font-size: 0.8rem;"><i class="fas fa-trash"></i></button>` : ''}
-                                </p>
+            try {
+                const html = questions.map(q => {
+                    console.log('Processing question:', q);
+                    return `
+                        <div class="video-card" style="margin-bottom: 2rem;">
+                            <h3>${escapeHtml(q.question_text)}</h3>
+                            ${q.image_path ? `<img src="static/${escapeHtml(q.image_path)}" alt="Soru görseli" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">` : ''}
+                            <p style="font-size: 0.85rem; color: #7f8c8d;">
+                                <i class="fas fa-user"></i> ${escapeHtml(q.creator_username || 'Admin')} • 
+                                <i class="fas fa-clock"></i> ${formatDate(q.created_at)}
+                                ${isAdmin ? `<button onclick="deleteQuestion(${q.id})" style="background: #e74c3c; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; margin-left: 1rem;"><i class="fas fa-trash"></i> Sil</button>` : ''}
+                            </p>
+                            
+                            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #ecf0f1;">
+                                <h4 style="font-size: 1rem; color: #34495e; margin-bottom: 1rem;">
+                                    <i class="fas fa-comments"></i> Cevaplar (${(q.answers || []).length})
+                                </h4>
+                                ${(q.answers || []).map(a => `
+                                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
+                                        <p style="color: #2c3e50; margin-bottom: 0.5rem;">${escapeHtml(a.answer_text)}</p>
+                                        <p style="font-size: 0.85rem; color: #7f8c8d;">
+                                            <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name || a.username || 'Anonim')}</span> • ${formatDate(a.created_at)}
+                                            ${isAdmin ? `<button onclick="deleteAnswer(${a.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; font-size: 0.8rem;"><i class="fas fa-trash"></i></button>` : ''}
+                                        </p>
+                                    </div>
+                                `).join('')}
+                                
+                                ${isLoggedIn ? `
+                                    <div id="answer-form-${q.id}" style="display: none; margin-top: 1rem; padding: 1rem; background: #ecf0f1; border-radius: 8px;">
+                                        <textarea id="answer-text-${q.id}" placeholder="Cevabınızı yazın..." style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 6px; font-family: inherit; resize: vertical; min-height: 80px;"></textarea>
+                                        <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+                                            <button onclick="submitAnswer(${q.id})" style="background: #27ae60; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">Gönder</button>
+                                            <button onclick="hideAnswerForm(${q.id})" style="background: #95a5a6; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">İptal</button>
+                                        </div>
+                                    </div>
+                                    <button id="show-btn-${q.id}" onclick="showAnswerForm(${q.id})" style="background: #3498db; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; margin-top: 0.5rem;">
+                                        <i class="fas fa-reply"></i> Cevap Yaz
+                                    </button>
+                                ` : ''}
                             </div>
-                        `).join('')}
-                        
-                        ${isLoggedIn ? `
-                            <div id="answer-form-${q.id}" style="display: none; margin-top: 1rem; padding: 1rem; background: #ecf0f1; border-radius: 8px;">
-                                <textarea id="answer-text-${q.id}" placeholder="Cevabınızı yazın..." style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 6px; font-family: inherit; resize: vertical; min-height: 80px;"></textarea>
-                                <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
-                                    <button onclick="submitAnswer(${q.id})" style="background: #27ae60; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">Gönder</button>
-                                    <button onclick="hideAnswerForm(${q.id})" style="background: #95a5a6; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">İptal</button>
-                                </div>
-                            </div>
-                            <button id="show-btn-${q.id}" onclick="showAnswerForm(${q.id})" style="background: #3498db; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; margin-top: 0.5rem;">
-                                <i class="fas fa-reply"></i> Cevap Yaz
-                            </button>
-                        ` : ''}
-                    </div>
-                </div>
-            `).join('');
+                        </div>
+                    `;
+                }).join('');
+                
+                console.log('Generated HTML length:', html.length);
+                container.innerHTML = html;
+                console.log('HTML set successfully');
+            } catch (error) {
+                console.error('Error in displayQuestions:', error);
+                container.innerHTML = '<div style="text-align: center; padding: 3rem; color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i><p>Sorular gösterilirken bir hata oluştu: ' + error.message + '</p></div>';
+            }
         }
 
         function showAnswerForm(questionId) {
