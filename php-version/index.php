@@ -21,6 +21,14 @@ require_once 'functions.php';
 			});
 		})();
 	</script>
+	<script type="application/ld+json">
+		{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Doğru Hoca",
+		"url": "https://dogruhoca.com"
+		}
+	</script>
     <link rel="icon" type="image/png" href="static/img/logo.png">
 	<title>Doğru Hoca - Kişisel Eğitim Portalı</title>
 	<style>
