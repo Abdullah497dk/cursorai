@@ -18,8 +18,8 @@ require_once 'functions.php';
 	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 	<link rel="dns-prefetch" href="https://www.youtube.com">
 	<link rel="icon" type="image/png" href="static/img/logo.png">
-    <!-- Font Awesome - Async load to avoid render blocking -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous">
+    <!-- Font Awesome - Async load using media strategy -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"></noscript>
 	<meta name="author" content="Doğru Hoca">
 	<link rel="stylesheet" href="static/style.css">
@@ -175,9 +175,9 @@ require_once 'functions.php';
 	</div>
 
 	<footer style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-		<img src="static/img/logo.png" alt="Developer Logo" style="border-radius: 50%; width: 50px; height: auto;">
+		<img src="static/img/logo.png" alt="Doğru Hoca Logo" width="50" height="50" style="border-radius: 50%;" loading="lazy">
 		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
-		<img src="static/img/dvlp.cc.logo.png" alt="Developer Logo" style="border-radius: 50%; width: 70px; height: auto;">
+		<img src="static/img/dvlp.cc.logo.png" alt="Developer Logo" width="70" height="70" style="border-radius: 50%;" loading="lazy">
 	</footer>
 
 	<script>
@@ -274,7 +274,7 @@ require_once 'functions.php';
 							<iframe class="responsive-iframe" src="${escapeHtml(video.youtube_url)}" 
 								title="${escapeHtml(video.title)}" frameborder="0" 
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-								referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+								referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy">
 							</iframe>
 							<p>${escapeHtml(video.description || '')}</p>
 						</div>
