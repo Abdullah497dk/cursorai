@@ -119,7 +119,20 @@ require_once 'functions.php';
         });
 
         // Load questions on page load
-        document.addEventListener('DOMContentLoaded', loadQuestions);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestions();
+            
+            // Make container and content sections visible
+            setTimeout(() => {
+                const container = document.querySelector('.container');
+                const contentSections = document.querySelectorAll('.content-section');
+                const footer = document.querySelector('footer');
+                
+                if (container) container.classList.add('visible');
+                contentSections.forEach(section => section.classList.add('visible'));
+                if (footer) footer.classList.add('visible');
+            }, 100);
+        });
 
         async function loadQuestions() {
             try {
