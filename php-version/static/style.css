@@ -3,13 +3,9 @@ html {
 	/* Enable smooth scrolling globally */
 }
 
+/* Mobile First: No background image by default to improve LCP */
 body.homepage {
-	background-image: url('img/2.jpg');
-	/* Set the background image for the homepage */
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	/* Ensure the background stays fixed */
+	background-color: #f5f5f5;
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -18,10 +14,20 @@ body.homepage {
 	justify-content: flex-start;
 	align-items: center;
 	min-height: 100vh;
-	background-color: #f5f5f5;
-	/* Default background for other pages */
 	overflow-x: hidden;
 	animation: fadeIn 1s ease-in-out;
+}
+
+/* Desktop: Add background image only for larger screens */
+@media (min-width: 769px) {
+	body.homepage {
+		background-image: url('img/2.jpg');
+		/* Set the background image for the homepage */
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		/* Ensure the background stays fixed */
+	}
 }
 
 /* CLS Fix: Add padding to body when nav is fixed */
@@ -458,12 +464,6 @@ social-links {
 		/* Ensure the body does not exceed the viewport width */
 		overflow-x: hidden;
 		/* Prevent horizontal scrolling */
-	}
-
-	body.homepage {
-		background-image: none;
-		/* Remove heavy background image on mobile */
-		background-color: #f5f5f5;
 	}
 
 	.hamburger {
