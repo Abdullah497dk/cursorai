@@ -1,12 +1,15 @@
 html {
-	scroll-behavior: smooth; /* Enable smooth scrolling globally */
+	scroll-behavior: smooth;
+	/* Enable smooth scrolling globally */
 }
 
 body.homepage {
-	background-image: url('img/2.jpg'); /* Set the background image for the homepage */
+	background-image: url('img/2.jpg');
+	/* Set the background image for the homepage */
 	background-size: cover;
 	background-position: center;
-	background-attachment: fixed; /* Ensure the background stays fixed */
+	background-attachment: fixed;
+	/* Ensure the background stays fixed */
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -15,7 +18,8 @@ body.homepage {
 	justify-content: flex-start;
 	align-items: center;
 	min-height: 100vh;
-	background-color: #f5f5f5; /* Default background for other pages */
+	background-color: #f5f5f5;
+	/* Default background for other pages */
 	overflow-x: hidden;
 	animation: fadeIn 1s ease-in-out;
 }
@@ -29,32 +33,42 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 	min-height: 100vh;
-	background-color: #f5f5f5; /* Default background for other pages */
-	overflow-x: hidden; /* Prevent horizontal scrolling */
-	scrollbar-color: #3498db #f5f5f5; /* Set thumb and track colors */
-	scrollbar-width: thin; /* Set scrollbar width */
+	background-color: #f5f5f5;
+	/* Default background for other pages */
+	overflow-x: hidden;
+	/* Prevent horizontal scrolling */
+	scrollbar-color: #3498db #f5f5f5;
+	/* Set thumb and track colors */
+	scrollbar-width: thin;
+	/* Set scrollbar width */
 }
 
 /* For Webkit-based browsers (Chrome, Edge, Safari) */
 body::-webkit-scrollbar {
-	width: 8px; /* Set scrollbar width */
+	width: 8px;
+	/* Set scrollbar width */
 }
 
 body::-webkit-scrollbar-thumb {
-	background-color: #3498db; /* Set scrollbar thumb color */
-	border-radius: 4px; /* Add rounded corners to the thumb */
+	background-color: #3498db;
+	/* Set scrollbar thumb color */
+	border-radius: 4px;
+	/* Add rounded corners to the thumb */
 }
 
 body::-webkit-scrollbar-track {
-	background-color: #f5f5f5; /* Set scrollbar track color */
+	background-color: #f5f5f5;
+	/* Set scrollbar track color */
 }
 
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
-	width: 100%; /* Ensure the container does not exceed the viewport width */
-	box-sizing: border-box; /* Include padding and border in width */
+	width: 100%;
+	/* Ensure the container does not exceed the viewport width */
+	box-sizing: border-box;
+	/* Include padding and border in width */
 	opacity: 0;
 	transform: translateY(20px);
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -66,7 +80,8 @@ body::-webkit-scrollbar-track {
 }
 
 header {
-	width: 100%; /* Ensure the header spans the full width of the screen */
+	width: 100%;
+	/* Ensure the header spans the full width of the screen */
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -83,57 +98,81 @@ header {
 }
 
 header h1 {
-	font-size: 3rem; /* Increase font size for better visibility */
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
+	font-size: 3rem;
+	/* Increase font size for better visibility */
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	/* Add text shadow for better readability */
 	margin: 0;
 }
 
 header p {
-	font-size: 1.5rem; /* Increase font size for better visibility */
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
+	font-size: 1.5rem;
+	/* Increase font size for better visibility */
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	/* Add text shadow for better readability */
 	margin-top: 10px;
 }
 
 nav {
 	background-color: #34495e;
 	padding: 25px;
-	position: relative; /* Initially below the header */
-	width: 100%; /* Ensure the navbar spans the full width */
-	z-index: 1000; /* Ensure it stays above other elements */
-	transition: all 0.3s ease; /* Smooth transition for position and style */
+	position: relative;
+	/* Initially below the header */
+	width: 100%;
+	/* Ensure the navbar spans the full width */
+	z-index: 1000;
+	/* Ensure it stays above other elements */
+	transition: all 0.3s ease;
+	/* Smooth transition for position and style */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	height: auto; /* Ensure the navbar maintains its height */
-	
+	height: auto;
+	/* Ensure the navbar maintains its height */
+
 }
 
 nav.scrolled {
-	position: fixed; /* Fix the navbar at the top when scrolled */
+	position: fixed;
+	/* Fix the navbar at the top when scrolled */
 	top: -1px;
 	left: 0;
-	background-color: #34495e; /* Keep the background color */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a stronger shadow when fixed */
+	background-color: #34495e;
+	/* Keep the background color */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	/* Add a stronger shadow when fixed */
 }
 
 .nav-links {
 	list-style: none;
-	display: flex; /* Ensure links are displayed in a row */
-	justify-content: center; /* Center-align links horizontally */
-	align-items: center; /* Center-align links vertically */
-	gap: 2rem; /* Add spacing between links */
+	display: flex;
+	/* Ensure links are displayed in a row */
+	justify-content: center;
+	/* Center-align links horizontally */
+	align-items: center;
+	/* Center-align links vertically */
+	gap: 2rem;
+	/* Add spacing between links */
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	position: relative; /* Default position for desktop view */
-	width: auto; /* Reset width for desktop view */
-	height: auto; /* Reset height for desktop view */
-	background-color: transparent; /* No background for desktop view */
-	flex-direction: row; /* Horizontal layout for desktop view */
-	box-shadow: none; /* Remove box shadow for desktop view */
-	overflow: visible; /* No overflow handling for desktop view */
+	position: relative;
+	/* Default position for desktop view */
+	width: auto;
+	/* Reset width for desktop view */
+	height: auto;
+	/* Reset height for desktop view */
+	background-color: transparent;
+	/* No background for desktop view */
+	flex-direction: row;
+	/* Horizontal layout for desktop view */
+	box-shadow: none;
+	/* Remove box shadow for desktop view */
+	overflow: visible;
+	/* No overflow handling for desktop view */
 }
 
 .nav-links.active {
-	transform: translateX(0); /* Show the menu when active */
+	transform: translateX(0);
+	/* Show the menu when active */
 }
 
 .nav-links a {
@@ -143,9 +182,11 @@ nav.scrolled {
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
 	transition: background-color 0.3s, transform 0.3s;
-	font-size: 1rem; /* Adjust font size for desktop view */
+	font-size: 1rem;
+	/* Adjust font size for desktop view */
 	white-space: nowrap;
-	display: block; /* Ensure links are block-level elements */
+	display: block;
+	/* Ensure links are block-level elements */
 }
 
 .nav-links a:hover {
@@ -154,14 +195,17 @@ nav.scrolled {
 }
 
 .hamburger {
-	display: none; /* Hide hamburger menu by default for desktop view */
+	display: none;
+	/* Hide hamburger menu by default for desktop view */
 	cursor: pointer;
 	flex-direction: column;
 	gap: 5px;
-	z-index: 1100; /* Ensure it stays above other elements */
+	z-index: 1100;
+	/* Ensure it stays above other elements */
 	position: fixed;
 	top: 1rem;
-	right: 1rem; /* Keep hamburger on the right */
+	right: 1rem;
+	/* Keep hamburger on the right */
 }
 
 .hamburger span {
@@ -213,6 +257,8 @@ nav.scrolled {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	min-height: 200px;
+	/* Prevent layout shift */
 }
 
 .video-card {
@@ -242,6 +288,8 @@ nav.scrolled {
 
 .useful-links {
 	list-style: none;
+	min-height: 100px;
+	/* Prevent layout shift */
 }
 
 .useful-links li {
@@ -270,6 +318,8 @@ nav.scrolled {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 20px;
+	min-height: 200px;
+	/* Prevent layout shift */
 }
 
 .document-card {
@@ -345,7 +395,8 @@ nav.scrolled {
 }
 
 footer {
-	width: 100%; /* Ensure the footer spans the full width */
+	width: 100%;
+	/* Ensure the footer spans the full width */
 	background-color: #2c3e50;
 	color: white;
 	text-align: center;
@@ -382,8 +433,10 @@ social-links {
 	border-radius: 6px;
 	transition: background-color 0.3s;
 	font-size: clamp(0.9rem, 1.5vw, 1rem);
-	width: 85%; /* Set button width to 85% */
-	text-align: center; /* Center text inside buttons */
+	width: 85%;
+	/* Set button width to 85% */
+	text-align: center;
+	/* Center text inside buttons */
 }
 
 .social-links a:hover {
@@ -391,77 +444,109 @@ social-links {
 }
 
 @media (max-width: 768px) {
-	html, body {
-		width: 100%; /* Ensure the body does not exceed the viewport width */
-		overflow-x: hidden; /* Prevent horizontal scrolling */
+
+	html,
+	body {
+		width: 100%;
+		/* Ensure the body does not exceed the viewport width */
+		overflow-x: hidden;
+		/* Prevent horizontal scrolling */
+	}
+
+	body.homepage {
+		background-image: none;
+		/* Remove heavy background image on mobile */
+		background-color: #f5f5f5;
 	}
 
 	.hamburger {
-		display: flex; /* Show hamburger menu for mobile view */
+		display: flex;
+		/* Show hamburger menu for mobile view */
 	}
 
 	.nav-links {
-		transform: translateX(-100%); /* Ensure the menu is fully hidden by default (from the left) */
+		transform: translateX(-100%);
+		/* Ensure the menu is fully hidden by default (from the left) */
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 70%; /* Adjust width for mobile view */
-		height: 80%; /* Set height to 80% */
+		width: 70%;
+		/* Adjust width for mobile view */
+		height: 80%;
+		/* Set height to 80% */
 		background-color: #34495e;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin-top: 20%; /* Add margin from the top */
-		border-radius: 0 30px 30px 0; /* Add rounded corners */
+		margin-top: 20%;
+		/* Add margin from the top */
+		border-radius: 0 30px 30px 0;
+		/* Add rounded corners */
 		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-		overflow-y: auto; /* Allow scrolling if content overflows */
+		overflow-y: auto;
+		/* Allow scrolling if content overflows */
 		transition: transform 0.3s ease-in-out;
 		z-index: 1000;
 	}
 
 	.nav-links.active {
-		transform: translateX(0); /* Show the menu when active */
+		transform: translateX(0);
+		/* Show the menu when active */
 	}
 
 	.nav-links a {
-		font-size: 0.9rem; /* Increase font size for mobile view */
-		padding: 1rem 2rem; /* Adjust padding for better spacing */
-		margin-bottom: 5px; /* Increase spacing between links */
+		font-size: 0.9rem;
+		/* Increase font size for mobile view */
+		padding: 1rem 2rem;
+		/* Adjust padding for better spacing */
+		margin-bottom: 5px;
+		/* Increase spacing between links */
 	}
 
 	.contact-section {
-		padding: 1.5rem; /* Reduce padding for smaller screens */
+		padding: 1.5rem;
+		/* Reduce padding for smaller screens */
 	}
 
 	.contact-details p {
-		font-size: 1rem; /* Adjust font size for better readability */
-		text-align: center; /* Center-align text */
+		font-size: 1rem;
+		/* Adjust font size for better readability */
+		text-align: center;
+		/* Center-align text */
 	}
 
 	.contact-details a {
-		font-size: 1rem; /* Adjust font size for links */
+		font-size: 1rem;
+		/* Adjust font size for links */
 	}
 
 	.contact-form {
-		padding: 1rem; /* Adjust padding for smaller screens */
-		width: 90%; /* Ensure the form fits within the screen */
-		margin: 0 auto; /* Center the form horizontally */
+		padding: 1rem;
+		/* Adjust padding for smaller screens */
+		width: 90%;
+		/* Ensure the form fits within the screen */
+		margin: 0 auto;
+		/* Center the form horizontally */
 	}
 
 	.contact-form label {
-		font-size: 0.9rem; /* Adjust label font size */
+		font-size: 0.9rem;
+		/* Adjust label font size */
 	}
 
 	.contact-form input,
 	.contact-form textarea {
-		font-size: 0.9rem; /* Adjust input and textarea font size */
-		padding: 10px; /* Reduce padding for inputs */
+		font-size: 0.9rem;
+		/* Adjust input and textarea font size */
+		padding: 10px;
+		/* Reduce padding for inputs */
 	}
 }
 
 @media (max-width: 480px) {
 	.container {
-		padding: 15px; /* Adjust padding for smaller screens */
+		padding: 15px;
+		/* Adjust padding for smaller screens */
 	}
 
 	.content-section {
@@ -473,23 +558,30 @@ social-links {
 	}
 
 	.contact-section {
-		padding: 1rem; /* Further reduce padding for very small screens */
+		padding: 1rem;
+		/* Further reduce padding for very small screens */
 	}
 
 	.contact-details p {
-		font-size: 0.9rem; /* Further adjust font size */
+		font-size: 0.9rem;
+		/* Further adjust font size */
 	}
 
 	.contact-form {
-		padding: 0.8rem; /* Further reduce padding for the form */
-		width: 95%; /* Ensure the form fits within the screen */
-		margin: 0 auto; /* Center the form horizontally */
+		padding: 0.8rem;
+		/* Further reduce padding for the form */
+		width: 95%;
+		/* Ensure the form fits within the screen */
+		margin: 0 auto;
+		/* Center the form horizontally */
 	}
 
 	.contact-form input,
 	.contact-form textarea {
-		font-size: 0.8rem; /* Further adjust input and textarea font size */
-		padding: 8px; /* Further reduce padding for inputs */
+		font-size: 0.8rem;
+		/* Further adjust input and textarea font size */
+		padding: 8px;
+		/* Further reduce padding for inputs */
 	}
 }
 
@@ -498,6 +590,7 @@ social-links {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
@@ -508,6 +601,7 @@ social-links {
 		opacity: 0;
 		transform: translateY(20px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -519,6 +613,7 @@ social-links {
 		opacity: 0;
 		transform: translateY(-20px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -572,8 +667,10 @@ social-links {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	max-width: 600px;
-	margin: 0 auto; /* Center the form horizontally */
-	box-sizing: border-box; /* Ensure padding does not affect width */
+	margin: 0 auto;
+	/* Center the form horizontally */
+	box-sizing: border-box;
+	/* Ensure padding does not affect width */
 }
 
 .contact-form label {
@@ -586,8 +683,10 @@ social-links {
 .contact-form input,
 .contact-form textarea {
 	width: 100%;
-	max-width: 100%; /* Prevent inputs from exceeding the container width */
-	box-sizing: border-box; /* Include padding and border in width */
+	max-width: 100%;
+	/* Prevent inputs from exceeding the container width */
+	box-sizing: border-box;
+	/* Include padding and border in width */
 	padding: 12px;
 	margin-bottom: 1rem;
 	border: 1px solid #ccc;
@@ -612,17 +711,28 @@ social-links {
 }
 
 .contact-section div:last-child {
-	background-color: #e9f7fc; /* Softer background for better readability */
-	padding: 1.5rem; /* Increase padding for better spacing */
-	margin-top: 2rem; /* Add more spacing above the div */
-	border-radius: 10px; /* Slightly more rounded corners */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhance shadow for depth */
-	font-size: 1.1rem; /* Slightly larger font size */
-	color: #2c3e50; /* Text color */
-	text-align: center; /* Center-align the text */
-	line-height: 1.8; /* Improve line spacing for readability */
-	font-style: italic; /* Add a subtle italic style */
-	border: 1px solid #b3d9e8; /* Add a border for better definition */
+	background-color: #e9f7fc;
+	/* Softer background for better readability */
+	padding: 1.5rem;
+	/* Increase padding for better spacing */
+	margin-top: 2rem;
+	/* Add more spacing above the div */
+	border-radius: 10px;
+	/* Slightly more rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Enhance shadow for depth */
+	font-size: 1.1rem;
+	/* Slightly larger font size */
+	color: #2c3e50;
+	/* Text color */
+	text-align: center;
+	/* Center-align the text */
+	line-height: 1.8;
+	/* Improve line spacing for readability */
+	font-style: italic;
+	/* Add a subtle italic style */
+	border: 1px solid #b3d9e8;
+	/* Add a border for better definition */
 }
 
 .dashboard-links {

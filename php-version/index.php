@@ -226,23 +226,49 @@ require_once 'functions.php';
 			}
 		});
 
-		// Scroll animations
+		// Scroll animations & Lazy Loading
 		document.addEventListener('DOMContentLoaded', () => {
 			const elements = document.querySelectorAll('.container, .content-section, footer');
-			const observer = new IntersectionObserver((entries) => {
+			
+			// Animation Observer
+			const animationObserver = new IntersectionObserver((entries) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
 						entry.target.classList.add('visible');
+						animationObserver.unobserve(entry.target);
 					}
 				});
 			}, { threshold: 0.1 });
-			elements.forEach(element => observer.observe(element));
+			elements.forEach(element => animationObserver.observe(element));
 			
-			// Load dynamic content
-			loadVideos();
-			loadDocuments();
-			loadLinks();
-			loadSiteInfo();
+			// Data Lazy Loading Observer
+			const dataObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const id = entry.target.id;
+						if (id === 'videolar') {
+							loadVideos();
+							dataObserver.unobserve(entry.target);
+						} else if (id === 'dokumanlar') {
+							loadDocuments();
+							dataObserver.unobserve(entry.target);
+						} else if (id === 'linkler') {
+							loadLinks();
+							dataObserver.unobserve(entry.target);
+						} else if (id === 'iletisim') {
+							loadSiteInfo();
+							dataObserver.unobserve(entry.target);
+						}
+					}
+				});
+			}, { rootMargin: '200px' }); // Load content 200px before it comes into view
+
+			// Observe sections for data loading
+			const sections = ['videolar', 'dokumanlar', 'linkler', 'iletisim'];
+			sections.forEach(id => {
+				const el = document.getElementById(id);
+				if (el) dataObserver.observe(el);
+			});
 		});
 
 		// Smooth scrolling
