@@ -10,17 +10,21 @@ require_once 'functions.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Doğru Hoca - Kişisel Eğitim Portalı. Eğitim videoları, dökümanlar ve faydalı linkler ile öğreniminizi geliştirin.">
 	<meta name="keywords" content="Eğitim, Öğretim, Videolar, Dökümanlar, Faydalı Linkler">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta name="author" content="Doğru Hoca">
+	<meta name="theme-color" content="#4CAF50">
+	
+	<!-- Preconnect for faster external resource loading -->
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+	<link rel="dns-prefetch" href="https://www.youtube.com">
+	<link rel="icon" type="image/png" href="static/img/logo.png">
+    <!-- Font Awesome - Async load to avoid render blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"></noscript>
 	<meta name="author" content="Doğru Hoca">
 	<link rel="stylesheet" href="static/style.css">
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-	<script type="text/javascript">
-		(function(){
-			emailjs.init({
-				publicKey: "zSgGEoZd5YJ8c7TOP",
-			});
-		})();
-	</script>
+	<!-- EmailJS - Deferred to avoid blocking -->
+	<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init({publicKey: 'zSgGEoZd5YJ8c7TOP'})"></script>
 	<script type="application/ld+json">
 		{
 		"@context": "https://schema.org",
