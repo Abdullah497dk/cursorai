@@ -190,6 +190,7 @@ require_once 'functions.php';
                                 ${(q.answers || []).map(a => `
                                     <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
                                         <p style="color: #2c3e50; margin-bottom: 0.5rem;">${escapeHtml(a.answer_text)}</p>
+                                        ${a.image_path ? `<img src="static/${escapeHtml(a.image_path)}" alt="Cevap görseli" style="max-width: 100%; border-radius: 8px; margin: 0.5rem 0;">` : ''}
                                         <p style="font-size: 0.85rem; color: #7f8c8d;">
                                             <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name || a.username || 'Anonim')}</span> • ${formatDate(a.created_at)}
                                             ${isAdmin ? `<button onclick="deleteAnswer(${a.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; font-size: 0.8rem;"><i class="fas fa-trash"></i></button>` : ''}
@@ -200,6 +201,10 @@ require_once 'functions.php';
                                 ${isLoggedIn ? `
                                     <div id="answer-form-${q.id}" style="display: none; margin-top: 1rem; padding: 1rem; background: #ecf0f1; border-radius: 8px;">
                                         <textarea id="answer-text-${q.id}" placeholder="Cevabınızı yazın..." style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 6px; font-family: inherit; resize: vertical; min-height: 80px;"></textarea>
+                                        <div style="margin-top: 0.75rem;">
+                                            <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 500;">Fotoğraf (İsteğe Bağlı)</label>
+                                            <input type="file" id="answer-image-${q.id}" accept="image/*" style="width: 100%; padding: 0.5rem; border: 1px solid #bdc3c7; border-radius: 6px; margin-bottom: 0.75rem;">
+                                        </div>
                                         <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
                                             <button onclick="submitAnswer(${q.id})" style="background: #27ae60; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">Gönder</button>
                                             <button onclick="hideAnswerForm(${q.id})" style="background: #95a5a6; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer;">İptal</button>
@@ -232,10 +237,12 @@ require_once 'functions.php';
             document.getElementById(`answer-form-${questionId}`).style.display = 'none';
             document.getElementById(`show-btn-${questionId}`).style.display = 'block';
             document.getElementById(`answer-text-${questionId}`).value = '';
+            document.getElementById(`answer-image-${questionId}`).value = '';
         }
 
         async function submitAnswer(questionId) {
             const answerText = document.getElementById(`answer-text-${questionId}`).value.trim();
+            const imageFile = document.getElementById(`answer-image-${questionId}`).files[0];
             
             if (!answerText) {
                 alert('Lütfen cevabınızı yazın');
@@ -243,13 +250,16 @@ require_once 'functions.php';
             }
 
             try {
+                const formData = new FormData();
+                formData.append('question_id', questionId);
+                formData.append('answer_text', answerText);
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+
                 const response = await fetch('api/Olimpiyat-answers.php', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        question_id: questionId,
-                        answer_text: answerText
-                    })
+                    body: formData
                 });
 
                 if (response.ok) {
