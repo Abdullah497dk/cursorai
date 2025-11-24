@@ -1,0 +1,44 @@
+# robots.txt for dogruhoca.com
+# SEO Optimized Configuration
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /includes/
+Disallow: /config/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block access to specific file types
+Disallow: /*.php$
+Allow: /*.php?*
+
+# Block access to sensitive files
+Disallow: /.htaccess
+Disallow: /.env
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Allow CSS, JS, and images for proper rendering
+Allow: /static/*.css
+Allow: /static/*.js
+Allow: /static/*.png
+Allow: /static/*.jpg
+Allow: /static/*.jpeg
+Allow: /static/*.gif
+Allow: /static/*.svg
+Allow: /assets/
+Allow: /images/
+
+# Crawl delay (optional - adjust if needed)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://dogruhoca.com/sitemap.xml
