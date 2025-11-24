@@ -1,7 +1,83 @@
 RewriteEngine On
+RewriteEngine On
 RewriteBase /
 
 # API rewrite rules
 RewriteRule ^api/videos/([0-9]+)$ api/videos.php?id=$1 [L,QSA]
 RewriteRule ^api/documents/([0-9]+)$ api/documents.php?id=$1 [L,QSA]
 RewriteRule ^api/links/([0-9]+)$ api/links.php?id=$1 [L,QSA]
+
+# ======================================
+# PERFORMANCE OPTIMIZATIONS
+# ======================================
+
+# Enable GZIP Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    
+    # PDF
+    ExpiresByType application/pdf "access plus 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+    # 1 YEAR - Images, Fonts
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg|woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+    
+    # 1 MONTH - CSS, JavaScript
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=2628000, public"
+    </FilesMatch>
+    
+    # 1 WEEK - PDF
+    <FilesMatch "\.(pdf)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    
+    # NO CACHE - HTML, PHP
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# Disable ETags
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
