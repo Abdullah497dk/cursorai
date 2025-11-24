@@ -24,6 +24,12 @@ body.homepage {
 	animation: fadeIn 1s ease-in-out;
 }
 
+/* CLS Fix: Add padding to body when nav is fixed */
+body.nav-fixed {
+	padding-top: 105px;
+	/* Adjust based on nav height */
+}
+
 body {
 	font-family: Arial, sans-serif;
 	margin: 0;
@@ -127,18 +133,19 @@ nav {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: auto;
 	/* Ensure the navbar maintains its height */
-
 }
 
 nav.scrolled {
 	position: fixed;
 	/* Fix the navbar at the top when scrolled */
-	top: -1px;
+	top: 0;
 	left: 0;
+	width: 100%;
 	background-color: #34495e;
 	/* Keep the background color */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	/* Add a stronger shadow when fixed */
+	animation: slideDown 0.3s ease-out;
 }
 
 .nav-links {

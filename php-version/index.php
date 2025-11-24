@@ -18,6 +18,8 @@ require_once 'functions.php';
 	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 	<link rel="dns-prefetch" href="https://www.youtube.com">
 	<link rel="icon" type="image/png" href="static/img/logo.png">
+	<!-- Preload Desktop Background Image for LCP -->
+	<link rel="preload" href="static/img/2.jpg" as="image" media="(min-width: 769px)">
     <!-- Font Awesome - Async load using media strategy -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"></noscript>
@@ -219,10 +221,13 @@ require_once 'functions.php';
 		// Toggle navbar style on scroll
 		window.addEventListener('scroll', function () {
 			const nav = document.querySelector('nav');
+			const body = document.body;
 			if (window.scrollY > document.querySelector('header').offsetHeight) {
 				nav.classList.add('scrolled');
+				body.classList.add('nav-fixed');
 			} else {
 				nav.classList.remove('scrolled');
+				body.classList.remove('nav-fixed');
 			}
 		});
 
