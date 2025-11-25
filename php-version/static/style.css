@@ -1,697 +1,774 @@
-			width: 100%;
-			/* Ensure the container does not exceed the viewport width */
-			box-sizing: border-box;
-			/* Include padding and border in width */
-			opacity: 0;
-			transform: translateY(20px);
-			transition: opacity 0.6s ease-out,
-			transform 0.6s ease-out;
-			}
-
-			.container.visible {
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			header {
-				width: 100%;
-				/* Ensure the header spans the full width of the screen */
-				background-size: cover;
-				background-position: center;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				color: white;
-				background-color: #2c3e50;
-				padding: 2rem 1rem;
-				text-align: center;
-				background-image: linear-gradient(to right, #2c3e50, #3498db);
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-				animation: slideDown 1s ease-in-out;
-			}
-
-			header h1 {
-				font-size: 3rem;
-				/* Increase font size for better visibility */
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-				/* Add text shadow for better readability */
-				margin: 0;
-			}
-
-			header p {
-				font-size: 1.5rem;
-				/* Increase font size for better visibility */
-				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-				/* Add text shadow for better readability */
-				margin-top: 10px;
-			}
-
-			nav {
-				background-color: #34495e;
-				padding: 25px;
-				position: relative;
-				/* Initially below the header */
-				width: 100%;
-				/* Ensure the navbar spans the full width */
-				z-index: 1000;
-				/* Ensure it stays above other elements */
-				transition: all 0.3s ease;
-				/* Smooth transition for position and style */
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-				height: auto;
-				/* Ensure the navbar maintains its height */
-			}
-
-			nav.scrolled {
-				position: fixed;
-				/* Fix the navbar at the top when scrolled */
-				top: 0;
-				left: 0;
-				width: 100%;
-				background-color: #34495e;
-				/* Keep the background color */
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-				/* Add a stronger shadow when fixed */
-				animation: slideDown 0.3s ease-out;
-			}
-
-			.nav-links {
-				list-style: none;
-				display: flex;
-				/* Ensure links are displayed in a row */
-				justify-content: center;
-				/* Center-align links horizontally */
-				align-items: center;
-				/* Center-align links vertically */
-				gap: 2rem;
-				/* Add spacing between links */
-				flex-wrap: wrap;
-				margin: 0;
-				padding: 0;
-				position: relative;
-				/* Default position for desktop view */
-				width: auto;
-				/* Reset width for desktop view */
-				height: auto;
-				/* Reset height for desktop view */
-				background-color: transparent;
-				/* No background for desktop view */
-				flex-direction: row;
-				/* Horizontal layout for desktop view */
-				box-shadow: none;
-				/* Remove box shadow for desktop view */
-				overflow: visible;
-				/* No overflow handling for desktop view */
-			}
-
-			.nav-links.active {
-				transform: translateX(0);
-				/* Show the menu when active */
-			}
-
-			.nav-links a {
-				color: white;
-				text-decoration: none;
-				font-weight: 500;
-				padding: 0.5rem 1rem;
-				border-radius: 4px;
-				transition: background-color 0.3s, transform 0.3s;
-				font-size: 1rem;
-				/* Adjust font size for desktop view */
-				white-space: nowrap;
-				display: block;
-				/* Ensure links are block-level elements */
-			}
-
-			.nav-links a:hover {
-				background-color: #2c3e50;
-				transform: scale(1.05);
-			}
-
-			.hamburger {
-				display: none;
-				/* Hide hamburger menu by default for desktop view */
-				cursor: pointer;
-				flex-direction: column;
-				gap: 5px;
-				z-index: 1100;
-				/* Ensure it stays above other elements */
-				position: fixed;
-				top: 1rem;
-				right: 1rem;
-				/* Keep hamburger on the right */
-			}
-
-			.hamburger span {
-				width: 30px;
-				height: 3px;
-				background-color: white;
-				border-radius: 2px;
-				transition: all 0.3s ease-in-out;
-			}
-
-			.hamburger.active span:nth-child(1) {
-				transform: rotate(45deg) translate(5px, 5px);
-			}
-
-			.hamburger.active span:nth-child(2) {
-				opacity: 0;
-			}
-
-			.hamburger.active span:nth-child(3) {
-				transform: rotate(-45deg) translate(5px, -5px);
-			}
-
-			.content-section {
-				background-color: white;
-				margin: 20px 0;
-				padding: clamp(15px, 3vw, 20px);
-				border-radius: 8px;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-				opacity: 0;
-				transform: translateY(20px);
-				transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-			}
-
-			.content-section.visible {
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			.section-title {
-				color: #2c3e50;
-				margin-bottom: 1.5rem;
-				padding-bottom: 0.5rem;
-				border-bottom: 2px solid #3498db;
-				font-size: clamp(1.5rem, 3vw, 2rem);
-			}
-
-			.video-container {
-				margin: 20px 0;
-				display: flex;
-				flex-direction: column;
-				gap: 20px;
-				min-height: 200px;
-				/* Prevent layout shift */
-			}
-
-			.video-card {
-				background: #f8f9fa;
-				padding: clamp(15px, 3vw, 20px);
-				border-radius: 8px;
-				border: 1px solid #dee2e6;
-				transition: transform 0.2s;
-			}
-
-			.video-card:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-			}
-
-			.video-card h3 {
-				font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-				margin-bottom: 15px;
-			}
-
-			.responsive-iframe {
-				width: 100%;
-				height: auto;
-				aspect-ratio: 16/9;
-				border: none;
-			}
-
-			.useful-links {
-				list-style: none;
-				min-height: 100px;
-				/* Prevent layout shift */
-			}
-
-			.useful-links li {
-				margin-bottom: 15px;
-			}
-
-			.useful-links a {
-				display: block;
-				padding: clamp(12px, 2vw, 15px);
-				background: #f8f9fa;
-				border-radius: 8px;
-				color: #2c3e50;
-				text-decoration: none;
-				transition: all 0.3s ease;
-				border: 1px solid #dee2e6;
-				font-size: clamp(0.9rem, 1.5vw, 1rem);
-			}
-
-			.useful-links a:hover {
-				background: #e9ecef;
-				transform: translateX(10px);
-				color: #3498db;
-			}
-
-			.documents {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-				gap: 20px;
-				min-height: 200px;
-				/* Prevent layout shift */
-			}
-
-			.document-card {
-				border: 1px solid #dee2e6;
-				padding: 15px;
-				border-radius: 8px;
-				background: #fff;
-				transition: transform 0.2s;
-			}
-
-			.document-card:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-			}
-
-			.document-card h3 {
-				color: #2c3e50;
-				margin-bottom: 10px;
-			}
-
-			.document-card a {
-				display: inline-block;
-				margin-top: 10px;
-				color: #3498db;
-				text-decoration: none;
-			}
-
-			.document-card a:hover {
-				text-decoration: underline;
-			}
-
-			.comments-section {
-				margin-top: 20px;
-			}
-
-			.comment-form {
-				margin-bottom: 20px;
-			}
-
-			.comment-form textarea {
-				width: 100%;
-				padding: clamp(12px, 2vw, 15px);
-				margin-bottom: 10px;
-				border: 1px solid #dee2e6;
-				border-radius: 8px;
-				resize: vertical;
-				font-size: clamp(0.9rem, 1.5vw, 1rem);
-			}
-
-			.comment-form button {
-				background-color: #3498db;
-				color: white;
-				border: none;
-				padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 25px);
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background-color 0.3s;
-				font-size: clamp(0.9rem, 1.5vw, 1rem);
-			}
-
-			.comment-form button:hover {
-				background-color: #2980b9;
-			}
-
-			.comment {
-				border-bottom: 1px solid #eee;
-				padding: 15px 0;
-			}
-
-			.comment h4 {
-				color: #2c3e50;
-				margin-bottom: 5px;
-			}
-
-			footer {
-				width: 100%;
-				/* Ensure the footer spans the full width */
-				background-color: #2c3e50;
-				color: white;
-				text-align: center;
-				padding: 20px;
-				margin-top: 40px;
-				box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-				opacity: 0;
-				transform: translateY(20px);
-				transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-			}
-
-			footer.visible {
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			footer p {
-				font-size: 1rem;
-			}
-
-			social-links {
-				margin-top: 20px;
-				display: flex;
-				gap: clamp(10px, 2vw, 20px);
-				justify-content: center;
-				flex-wrap: wrap;
-			}
-
-			.social-links a {
-				color: white;
-				text-decoration: none;
-				padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
-				background-color: #3498db;
-				border-radius: 6px;
-				transition: background-color 0.3s;
-				font-size: clamp(0.9rem, 1.5vw, 1rem);
-				width: 85%;
-				/* Set button width to 85% */
-				text-align: center;
-				/* Center text inside buttons */
-			}
-
-			.social-links a:hover {
-				background-color: #2980b9;
-			}
-
-			@media (max-width: 768px) {
-
-				html,
-				body {
-					width: 100%;
-					/* Ensure the body does not exceed the viewport width */
-					overflow-x: hidden;
-					/* Prevent horizontal scrolling */
-				}
-
-				.hamburger {
-					display: flex;
-					/* Show hamburger menu for mobile view */
-				}
-
-				.nav-links {
-					transform: translateX(-100%);
-					/* Ensure the menu is fully hidden by default (from the left) */
-					position: fixed;
-					top: 0;
-					left: 0;
-					width: 70%;
-					/* Adjust width for mobile view */
-					height: 80%;
-					/* Set height to 80% */
-					background-color: #34495e;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					margin-top: 20%;
-					/* Add margin from the top */
-					border-radius: 0 30px 30px 0;
-					/* Add rounded corners */
-					box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-					overflow-y: auto;
-					/* Allow scrolling if content overflows */
-					transition: transform 0.3s ease-in-out;
-					z-index: 1000;
-				}
-
-				.nav-links.active {
-					transform: translateX(0);
-					/* Show the menu when active */
-				}
-
-				.nav-links a {
-					font-size: 0.9rem;
-					/* Increase font size for mobile view */
-					padding: 1rem 2rem;
-					/* Adjust padding for better spacing */
-					margin-bottom: 5px;
-					/* Increase spacing between links */
-				}
-
-				.contact-section {
-					padding: 1.5rem;
-					/* Reduce padding for smaller screens */
-				}
-
-				.contact-details p {
-					font-size: 1rem;
-					/* Adjust font size for better readability */
-					text-align: center;
-					/* Center-align text */
-				}
-
-				.contact-details a {
-					font-size: 1rem;
-					/* Adjust font size for links */
-				}
-
-				.contact-form {
-					padding: 1rem;
-					/* Adjust padding for smaller screens */
-					width: 90%;
-					/* Ensure the form fits within the screen */
-					margin: 0 auto;
-					/* Center the form horizontally */
-				}
-
-				.contact-form label {
-					font-size: 0.9rem;
-					/* Adjust label font size */
-				}
-
-				.contact-form input,
-				.contact-form textarea {
-					font-size: 0.9rem;
-					/* Adjust input and textarea font size */
-					padding: 10px;
-					/* Reduce padding for inputs */
-				}
-			}
-
-			@media (max-width: 480px) {
-				.container {
-					padding: 15px;
-					/* Adjust padding for smaller screens */
-				}
-
-				.content-section {
-					padding: 15px;
-				}
-
-				.video-card {
-					padding: 15px;
-				}
-
-				.contact-section {
-					padding: 1rem;
-					/* Further reduce padding for very small screens */
-				}
-
-				.contact-details p {
-					font-size: 0.9rem;
-					/* Further adjust font size */
-				}
-
-				.contact-form {
-					padding: 0.8rem;
-					/* Further reduce padding for the form */
-					width: 95%;
-					/* Ensure the form fits within the screen */
-					margin: 0 auto;
-					/* Center the form horizontally */
-				}
-
-				.contact-form input,
-				.contact-form textarea {
-					font-size: 0.8rem;
-					/* Further adjust input and textarea font size */
-					padding: 8px;
-					/* Further reduce padding for inputs */
-				}
-			}
-
-			/* Animations */
-			@keyframes fadeIn {
-				from {
-					opacity: 0;
-				}
-
-				to {
-					opacity: 1;
-				}
-			}
-
-			@keyframes fadeInUp {
-				from {
-					opacity: 0;
-					transform: translateY(20px);
-				}
-
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-
-			@keyframes slideDown {
-				from {
-					opacity: 0;
-					transform: translateY(-20px);
-				}
-
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-
-			.contact-section {
-				background-color: #f8f9fa;
-				padding: 2rem;
-				border-radius: 12px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-				margin: 20px 0;
-			}
-
-			.contact-section h2 {
-				color: #2c3e50;
-				font-size: 2rem;
-				margin-bottom: 1.5rem;
-				text-align: center;
-			}
-
-			.contact-details {
-				display: flex;
-				flex-direction: column;
-				gap: 1rem;
-				align-items: center;
-			}
-
-			.contact-details p {
-				font-size: 1.2rem;
-				color: #2c3e50;
-				margin: 0;
-			}
-
-			.contact-details a {
-				color: #3498db;
-				text-decoration: none;
-				font-size: 1.2rem;
-				transition: color 0.3s ease;
-			}
-
-			.contact-details a:hover {
-				color: #2980b9;
-			}
-
-			.contact-form {
-				margin-top: 2rem;
-				background-color: white;
-				padding: 1.5rem;
-				border-radius: 8px;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-				width: 100%;
-				max-width: 600px;
-				margin: 0 auto;
-				/* Center the form horizontally */
-				box-sizing: border-box;
-				/* Ensure padding does not affect width */
-			}
-
-			.contact-form label {
-				display: block;
-				margin-bottom: 0.5rem;
-				font-weight: bold;
-				color: #2c3e50;
-			}
-
-			.contact-form input,
-			.contact-form textarea {
-				width: 100%;
-				max-width: 100%;
-				/* Prevent inputs from exceeding the container width */
-				box-sizing: border-box;
-				/* Include padding and border in width */
-				padding: 12px;
-				margin-bottom: 1rem;
-				border: 1px solid #ccc;
-				border-radius: 6px;
-				font-size: 1rem;
-			}
-
-			.contact-form button {
-				background-color: #3498db;
-				color: white;
-				border: none;
-				padding: 12px;
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background-color 0.3s, transform 0.3s;
-				font-size: 1rem;
-			}
-
-			.contact-form button:hover {
-				background-color: #2980b9;
-				transform: scale(1.05);
-			}
-
-			.contact-section div:last-child {
-				background-color: #e9f7fc;
-				/* Softer background for better readability */
-				padding: 1.5rem;
-				/* Increase padding for better spacing */
-				margin-top: 2rem;
-				/* Add more spacing above the div */
-				border-radius: 10px;
-				/* Slightly more rounded corners */
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-				/* Enhance shadow for depth */
-				font-size: 1.1rem;
-				/* Slightly larger font size */
-				color: #2c3e50;
-				/* Text color */
-				text-align: center;
-				/* Center-align the text */
-				line-height: 1.8;
-				/* Improve line spacing for readability */
-				font-style: italic;
-				/* Add a subtle italic style */
-				border: 1px solid #b3d9e8;
-				/* Add a border for better definition */
-			}
-
-			.dashboard-links {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-				gap: 20px;
-				margin-top: 20px;
-			}
-
-			.dashboard-card {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				background-color: #f8f9fa;
-				padding: 20px;
-				border-radius: 8px;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-				text-decoration: none;
-				color: #2c3e50;
-				transition: transform 0.3s, box-shadow 0.3s;
-			}
-
-			.dashboard-card i {
-				font-size: 2rem;
-				margin-bottom: 10px;
-				color: #3498db;
-			}
-
-			.dashboard-card:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-			}
+html {
+	scroll-behavior: smooth;
+	/* Enable smooth scrolling globally */
+}
+
+/* Mobile First: Default styles */
+body.homepage {
+	background-image: url('img/2.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: scroll;
+	/* Scroll on mobile for better performance */
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 100vh;
+	overflow-x: hidden;
+	animation: fadeIn 1s ease-in-out;
+}
+
+/* Desktop: Fixed background for larger screens */
+@media (min-width: 769px) {
+	body.homepage {
+		background-attachment: fixed;
+	}
+}
+
+/* CLS Fix: Add padding to body when nav is fixed */
+body.nav-fixed {
+	padding-top: 105px;
+	/* Adjust based on nav height */
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #000000bf;
+	/* Default background for other pages */
+	overflow-x: hidden;
+	/* Prevent horizontal scrolling */
+	scrollbar-color: #3498db #f5f5f5;
+	/* Set thumb and track colors */
+	scrollbar-width: thin;
+	/* Set scrollbar width */
+}
+
+/* For Webkit-based browsers (Chrome, Edge, Safari) */
+body::-webkit-scrollbar {
+	width: 8px;
+	/* Set scrollbar width */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #3498db;
+	/* Set scrollbar thumb color */
+	border-radius: 4px;
+	/* Add rounded corners to the thumb */
+}
+
+body::-webkit-scrollbar-track {
+	background-color: #f5f5f5;
+	/* Set scrollbar track color */
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 100%;
+	/* Ensure the container does not exceed the viewport width */
+	box-sizing: border-box;
+	/* Include padding and border in width */
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.container.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+header {
+	width: 100%;
+	/* Ensure the header spans the full width of the screen */
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: #2c3e50;
+	padding: 2rem 1rem;
+	text-align: center;
+	background-image: linear-gradient(to right, #2c3e50, #3498db);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	animation: slideDown 1s ease-in-out;
+}
+
+header h1 {
+	font-size: 3rem;
+	/* Increase font size for better visibility */
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+	/* Add text shadow for better readability */
+	margin: 0;
+}
+
+header p {
+	font-size: 1.5rem;
+	/* Increase font size for better visibility */
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	/* Add text shadow for better readability */
+	margin-top: 10px;
+}
+
+nav {
+	background-color: #34495e;
+	padding: 25px;
+	position: relative;
+	/* Initially below the header */
+	width: 100%;
+	/* Ensure the navbar spans the full width */
+	z-index: 1000;
+	/* Ensure it stays above other elements */
+	transition: all 0.3s ease;
+	/* Smooth transition for position and style */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: auto;
+	/* Ensure the navbar maintains its height */
+}
+
+nav.scrolled {
+	position: fixed;
+	/* Fix the navbar at the top when scrolled */
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #34495e;
+	/* Keep the background color */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	/* Add a stronger shadow when fixed */
+	animation: slideDown 0.3s ease-out;
+}
+
+.nav-links {
+	list-style: none;
+	display: flex;
+	/* Ensure links are displayed in a row */
+	justify-content: center;
+	/* Center-align links horizontally */
+	align-items: center;
+	/* Center-align links vertically */
+	gap: 2rem;
+	/* Add spacing between links */
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	/* Default position for desktop view */
+	width: auto;
+	/* Reset width for desktop view */
+	height: auto;
+	/* Reset height for desktop view */
+	background-color: transparent;
+	/* No background for desktop view */
+	flex-direction: row;
+	/* Horizontal layout for desktop view */
+	box-shadow: none;
+	/* Remove box shadow for desktop view */
+	overflow: visible;
+	/* No overflow handling for desktop view */
+}
+
+.nav-links.active {
+	transform: translateX(0);
+	/* Show the menu when active */
+}
+
+.nav-links a {
+	color: white;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem;
+	/* Adjust font size for desktop view */
+	white-space: nowrap;
+	display: block;
+	/* Ensure links are block-level elements */
+}
+
+.nav-links a:hover {
+	background-color: #2c3e50;
+	transform: scale(1.05);
+}
+
+.hamburger {
+	display: none;
+	/* Hide hamburger menu by default for desktop view */
+	cursor: pointer;
+	flex-direction: column;
+	gap: 5px;
+	z-index: 1100;
+	/* Ensure it stays above other elements */
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	/* Keep hamburger on the right */
+}
+
+.hamburger span {
+	width: 30px;
+	height: 3px;
+	background-color: white;
+	border-radius: 2px;
+	transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active span:nth-child(1) {
+	transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+	transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.content-section {
+	background-color: white;
+	margin: 20px 0;
+	padding: clamp(15px, 3vw, 20px);
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.content-section.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.section-title {
+	color: #2c3e50;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #3498db;
+	font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.video-container {
+	margin: 20px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-height: 200px;
+	/* Prevent layout shift */
+}
+
+.video-card {
+	background: #f8f9fa;
+	padding: clamp(15px, 3vw, 20px);
+	border-radius: 8px;
+	border: 1px solid #dee2e6;
+	transition: transform 0.2s;
+}
+
+.video-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-card h3 {
+	font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+	margin-bottom: 15px;
+}
+
+.responsive-iframe {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16/9;
+	border: none;
+}
+
+.useful-links {
+	list-style: none;
+	min-height: 100px;
+	/* Prevent layout shift */
+}
+
+.useful-links li {
+	margin-bottom: 15px;
+}
+
+.useful-links a {
+	display: block;
+	padding: clamp(12px, 2vw, 15px);
+	background: #f8f9fa;
+	border-radius: 8px;
+	color: #2c3e50;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	border: 1px solid #dee2e6;
+	font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.useful-links a:hover {
+	background: #e9ecef;
+	transform: translateX(10px);
+	color: #3498db;
+}
+
+.documents {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+	min-height: 200px;
+	/* Prevent layout shift */
+}
+
+.document-card {
+	border: 1px solid #dee2e6;
+	padding: 15px;
+	border-radius: 8px;
+	background: #fff;
+	transition: transform 0.2s;
+}
+
+.document-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.document-card h3 {
+	color: #2c3e50;
+	margin-bottom: 10px;
+}
+
+.document-card a {
+	display: inline-block;
+	margin-top: 10px;
+	color: #3498db;
+	text-decoration: none;
+}
+
+.document-card a:hover {
+	text-decoration: underline;
+}
+
+.comments-section {
+	margin-top: 20px;
+}
+
+.comment-form {
+	margin-bottom: 20px;
+}
+
+.comment-form textarea {
+	width: 100%;
+	padding: clamp(12px, 2vw, 15px);
+	margin-bottom: 10px;
+	border: 1px solid #dee2e6;
+	border-radius: 8px;
+	resize: vertical;
+	font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.comment-form button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 25px);
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.comment-form button:hover {
+	background-color: #2980b9;
+}
+
+.comment {
+	border-bottom: 1px solid #eee;
+	padding: 15px 0;
+}
+
+.comment h4 {
+	color: #2c3e50;
+	margin-bottom: 5px;
+}
+
+footer {
+	width: 100%;
+	/* Ensure the footer spans the full width */
+	background-color: #2c3e50;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+footer.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+footer p {
+	font-size: 1rem;
+}
+
+social-links {
+	margin-top: 20px;
+	display: flex;
+	gap: clamp(10px, 2vw, 20px);
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.social-links a {
+	color: white;
+	text-decoration: none;
+	padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+	background-color: #3498db;
+	border-radius: 6px;
+	transition: background-color 0.3s;
+	font-size: clamp(0.9rem, 1.5vw, 1rem);
+	width: 85%;
+	/* Set button width to 85% */
+	text-align: center;
+	/* Center text inside buttons */
+}
+
+.social-links a:hover {
+	background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+
+	html,
+	body {
+		width: 100%;
+		/* Ensure the body does not exceed the viewport width */
+		overflow-x: hidden;
+		/* Prevent horizontal scrolling */
+	}
+
+	.hamburger {
+		display: flex;
+		/* Show hamburger menu for mobile view */
+	}
+
+	.nav-links {
+		transform: translateX(-100%);
+		/* Ensure the menu is fully hidden by default (from the left) */
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 70%;
+		/* Adjust width for mobile view */
+		height: 80%;
+		/* Set height to 80% */
+		background-color: #34495e;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20%;
+		/* Add margin from the top */
+		border-radius: 0 30px 30px 0;
+		/* Add rounded corners */
+		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+		overflow-y: auto;
+		/* Allow scrolling if content overflows */
+		transition: transform 0.3s ease-in-out;
+		z-index: 1000;
+	}
+
+	.nav-links.active {
+		transform: translateX(0);
+		/* Show the menu when active */
+	}
+
+	.nav-links a {
+		font-size: 0.9rem;
+		/* Increase font size for mobile view */
+		padding: 1rem 2rem;
+		/* Adjust padding for better spacing */
+		margin-bottom: 5px;
+		/* Increase spacing between links */
+	}
+
+	.contact-section {
+		padding: 1.5rem;
+		/* Reduce padding for smaller screens */
+	}
+
+	.contact-details p {
+		font-size: 1rem;
+		/* Adjust font size for better readability */
+		text-align: center;
+		/* Center-align text */
+	}
+
+	.contact-details a {
+		font-size: 1rem;
+		/* Adjust font size for links */
+	}
+
+	.contact-form {
+		padding: 1rem;
+		/* Adjust padding for smaller screens */
+		width: 90%;
+		/* Ensure the form fits within the screen */
+		margin: 0 auto;
+		/* Center the form horizontally */
+	}
+
+	.contact-form label {
+		font-size: 0.9rem;
+		/* Adjust label font size */
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-size: 0.9rem;
+		/* Adjust input and textarea font size */
+		padding: 10px;
+		/* Reduce padding for inputs */
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 15px;
+		/* Adjust padding for smaller screens */
+	}
+
+	.content-section {
+		padding: 15px;
+	}
+
+	.video-card {
+		padding: 15px;
+	}
+
+	.contact-section {
+		padding: 1rem;
+		/* Further reduce padding for very small screens */
+	}
+
+	.contact-details p {
+		font-size: 0.9rem;
+		/* Further adjust font size */
+	}
+
+	.contact-form {
+		padding: 0.8rem;
+		/* Further reduce padding for the form */
+		width: 95%;
+		/* Ensure the form fits within the screen */
+		margin: 0 auto;
+		/* Center the form horizontally */
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-size: 0.8rem;
+		/* Further adjust input and textarea font size */
+		padding: 8px;
+		/* Further reduce padding for inputs */
+	}
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.contact-section {
+	background-color: #f8f9fa;
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 20px 0;
+}
+
+.contact-section h2 {
+	color: #2c3e50;
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+}
+
+.contact-details p {
+	font-size: 1.2rem;
+	color: #2c3e50;
+	margin: 0;
+}
+
+.contact-details a {
+	color: #3498db;
+	text-decoration: none;
+	font-size: 1.2rem;
+	transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+	color: #2980b9;
+}
+
+.contact-form {
+	margin-top: 2rem;
+	background-color: white;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	/* Center the form horizontally */
+	box-sizing: border-box;
+	/* Ensure padding does not affect width */
+}
+
+.contact-form label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+	color: #2c3e50;
+}
+
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	max-width: 100%;
+	/* Prevent inputs from exceeding the container width */
+	box-sizing: border-box;
+	/* Include padding and border in width */
+	padding: 12px;
+	margin-bottom: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 1rem;
+}
+
+.contact-form button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	font-size: 1rem;
+}
+
+.contact-form button:hover {
+	background-color: #2980b9;
+	transform: scale(1.05);
+}
+
+.contact-section div:last-child {
+	background-color: #e9f7fc;
+	/* Softer background for better readability */
+	padding: 1.5rem;
+	/* Increase padding for better spacing */
+	margin-top: 2rem;
+	/* Add more spacing above the div */
+	border-radius: 10px;
+	/* Slightly more rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Enhance shadow for depth */
+	font-size: 1.1rem;
+	/* Slightly larger font size */
+	color: #2c3e50;
+	/* Text color */
+	text-align: center;
+	/* Center-align the text */
+	line-height: 1.8;
+	/* Improve line spacing for readability */
+	font-style: italic;
+	/* Add a subtle italic style */
+	border: 1px solid #b3d9e8;
+	/* Add a border for better definition */
+}
+
+.dashboard-links {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.dashboard-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	color: #2c3e50;
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-card i {
+	font-size: 2rem;
+	margin-bottom: 10px;
+	color: #3498db;
+}
+
+.dashboard-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
