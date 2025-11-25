@@ -176,7 +176,7 @@ require_once 'functions.php';
                     return `
                         <div class="video-card" style="margin-bottom: 2rem;">
                             <h3>${escapeHtml(q.question_text)}</h3>
-                            ${q.image_path ? `<img src="static/${escapeHtml(q.image_path)}" alt="Soru görseli" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">` : ''}
+                            ${q.image_path ? `<img src="static/${escapeHtml(q.image_path)}" alt="Soru görseli" class="question-image" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">` : ''}
                             <p style="font-size: 0.85rem; color: #7f8c8d;">
                                 <i class="fas fa-user"></i> ${escapeHtml(q.creator_username || 'Admin')} • 
                                 <i class="fas fa-clock"></i> ${formatDate(q.created_at)}
@@ -190,7 +190,7 @@ require_once 'functions.php';
                                 ${(q.answers || []).map(a => `
                                     <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
                                         <p style="color: #2c3e50; margin-bottom: 0.5rem;">${escapeHtml(a.answer_text)}</p>
-                                        ${a.image_path ? `<img src="static/${escapeHtml(a.image_path)}" alt="Cevap görseli" style="max-width: 100%; border-radius: 8px; margin: 0.5rem 0;">` : ''}
+                                        ${a.image_path ? `<img src="static/${escapeHtml(a.image_path)}" alt="Cevap görseli" class="answer-image" style="max-width: 100%; border-radius: 8px; margin: 0.5rem 0;">` : ''}
                                         <p style="font-size: 0.85rem; color: #7f8c8d;">
                                             <span style="font-weight: 600; color: #3498db;">${escapeHtml(a.user_name || a.username || 'Anonim')}</span> • ${formatDate(a.created_at)}
                                             ${isAdmin ? `<button onclick="deleteAnswer(${a.id})" style="background: #e74c3c; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; font-size: 0.8rem;"><i class="fas fa-trash"></i></button>` : ''}
