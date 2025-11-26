@@ -50,7 +50,7 @@ require_once 'functions.php';
         <section class="content-section">
             <div style="text-align: center; margin-bottom: 2rem;">
                 <h2 class="section-title">🏆 Olimpiyat Soruları</h2>
-                <p>Matematik ve fen olimpiyatlarına hazırlık soruları</p>
+                <p>Fizik olimpiyatlarına hazırlık soruları</p>
                 <?php if (isAdmin()): ?>
                     <button class="add-question-btn" onclick="openQuestionModal()" style="background: #3498db; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem;">
                         <i class="fas fa-plus"></i> Yeni Soru Ekle
