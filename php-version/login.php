@@ -43,7 +43,12 @@ $flash = getFlashMessage();
             background-image: url('static/img/2.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll; /* Mobile performance */
+        }
+        @media (min-width: 769px) {
+            body {
+                background-attachment: fixed;
+            }
         }
     </style>
 </head>
