@@ -15,7 +15,7 @@ require_once 'functions.php';
 </head>
 <body class="homepage">
     <header>
-        <h1>Dogruhoca</h1>
+        <h1>dogruhoca</h1>
         <div class="header-content">
             <p>Olimpiyat Soruları</p>
         </div>

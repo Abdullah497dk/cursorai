@@ -54,7 +54,7 @@ $flash = getFlashMessage();
 </head>
 <body>
     <header>
-        <h1>Doğru Hoca</h1>
+        <h1>dogruhoca</h1>
         <p>Eğitim ve Öğretim Portalı</p>
     </header>
 
