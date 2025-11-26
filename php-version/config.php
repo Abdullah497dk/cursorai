@@ -8,7 +8,7 @@ define('DB_PASS', 'Dogruhoca1');  // Hostinger şifresi
 
 // Site Configuration
 define('SITE_URL', 'https://lightskyblue-cod-902795.hostingersite.com/');  // Sitenizin URL'si
-define('ADMIN_USERNAMES', ['AbdullahAdrainMorsy', 'DogruHoca']);  // Admin kullanıcıları
+define('ADMIN_USERNAMES', ['AbdullahAdrainMorsy', 'dogruhoca']);  // Admin kullanıcıları
 
 // Timezone Configuration
 date_default_timezone_set('Europe/Istanbul');  // Türkiye saat dilimi (UTC+3)
