@@ -361,7 +361,13 @@ require_once 'functions.php';
 		// Load Site Info from API
 		async function loadSiteInfo() {
 			try {
-				const response = await fetch('api/site-info.php');
+			const response = await fetch('api/site-info.php?_=' + new Date().getTime(), {
+			cache: 'no-store',
+			headers: {
+				'Cache-Control': 'no-cache',
+				'Pragma': 'no-cache'
+			}
+		});
 				const data = await response.json();
 				
 				if (data.site_info) {

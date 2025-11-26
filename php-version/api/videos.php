@@ -5,6 +5,12 @@ require_once '../functions.php';
 
 header('Content-Type: application/json');
 
+// Prevent browser caching
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: 0');
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Parse ID from URL (e.g., /api/videos/123 or /api/videos.php?id=123)
