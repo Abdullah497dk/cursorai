@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
 async function updateStats() {
 	try {
 		const [videos, documents, links] = await Promise.all([
-			fetch('/api/videos').then(r => r.json()),
-			fetch('/api/documents').then(r => r.json()),
-			fetch('/api/links').then(r => r.json())
+			fetch('api/videos.php').then(r => r.json()),
+			fetch('api/documents.php').then(r => r.json()),
+			fetch('api/links.php').then(r => r.json())
 		]);
 
 		document.getElementById('video-count').textContent = videos.videos?.length || 0;
@@ -51,7 +51,7 @@ async function updateStats() {
 // ========== VIDEOS ==========
 async function loadVideos() {
 	try {
-		const response = await fetch('/api/videos');
+		const response = await fetch('api/videos.php');
 		const data = await response.json();
 		const container = document.getElementById('videos-list');
 
@@ -92,7 +92,7 @@ function openVideoModal(videoId = null) {
 	if (videoId) {
 		title.textContent = 'Video Düzenle';
 		// Load video data
-		fetch(`/api/videos`)
+		fetch(`api/videos.php`)
 			.then(r => r.json())
 			.then(data => {
 				const video = data.videos.find(v => v.id === videoId);
@@ -127,7 +127,7 @@ document.getElementById('video-form').addEventListener('submit', async (e) => {
 	};
 
 	try {
-		const url = videoId ? `/api/videos/${videoId}` : '/api/videos';
+		const url = videoId ? `api/videos.php/${videoId}` : 'api/videos.php';
 		const method = videoId ? 'PUT' : 'POST';
 
 		const response = await fetch(url, {
@@ -157,7 +157,7 @@ async function deleteVideo(id) {
 	if (!confirm('Bu videoyu silmek istediğinizden emin misiniz?')) return;
 
 	try {
-		const response = await fetch(`/api/videos/${id}`, { method: 'DELETE' });
+		const response = await fetch(`api/videos.php/${id}`, { method: 'DELETE' });
 		if (response.ok) {
 			showAlert('Video silindi', 'success');
 			loadVideos();
@@ -171,7 +171,7 @@ async function deleteVideo(id) {
 // ========== DOCUMENTS ==========
 async function loadDocuments() {
 	try {
-		const response = await fetch('/api/documents');
+		const response = await fetch('api/documents.php');
 		const data = await response.json();
 		const container = document.getElementById('documents-list');
 
@@ -211,7 +211,7 @@ function openDocumentModal(docId = null) {
 
 	if (docId) {
 		title.textContent = 'Döküman Düzenle';
-		fetch(`/api/documents`)
+		fetch(`api/documents.php`)
 			.then(r => r.json())
 			.then(data => {
 				const doc = data.documents.find(d => d.id === docId);
@@ -252,7 +252,7 @@ document.getElementById('document-form').addEventListener('submit', async (e) =>
 	}
 
 	try {
-		const url = docId ? `/api/documents/${docId}` : '/api/documents';
+		const url = docId ? `api/documents.php/${docId}` : 'api/documents.php';
 		const method = docId ? 'PUT' : 'POST';
 
 		const response = await fetch(url, {
@@ -281,7 +281,7 @@ async function deleteDocument(id) {
 	if (!confirm('Bu dökümanı silmek istediğinizden emin misiniz?')) return;
 
 	try {
-		const response = await fetch(`/api/documents/${id}`, { method: 'DELETE' });
+		const response = await fetch(`api/documents.php/${id}`, { method: 'DELETE' });
 		if (response.ok) {
 			showAlert('Döküman silindi', 'success');
 			loadDocuments();
@@ -295,7 +295,7 @@ async function deleteDocument(id) {
 // ========== LINKS ==========
 async function loadLinks() {
 	try {
-		const response = await fetch('/api/links');
+		const response = await fetch('api/links.php');
 		const data = await response.json();
 		const container = document.getElementById('links-list');
 
@@ -335,7 +335,7 @@ function openLinkModal(linkId = null) {
 
 	if (linkId) {
 		title.textContent = 'Link Düzenle';
-		fetch(`/api/links`)
+		fetch(`api/links.php`)
 			.then(r => r.json())
 			.then(data => {
 				const link = data.links.find(l => l.id === linkId);
@@ -368,7 +368,7 @@ document.getElementById('link-form').addEventListener('submit', async (e) => {
 	};
 
 	try {
-		const url = linkId ? `/api/links/${linkId}` : '/api/links';
+		const url = linkId ? `api/links.php/${linkId}` : 'api/links.php';
 		const method = linkId ? 'PUT' : 'POST';
 
 		const response = await fetch(url, {
@@ -398,7 +398,7 @@ async function deleteLink(id) {
 	if (!confirm('Bu linki silmek istediğinizden emin misiniz?')) return;
 
 	try {
-		const response = await fetch(`/api/links/${id}`, { method: 'DELETE' });
+		const response = await fetch(`api/links.php/${id}`, { method: 'DELETE' });
 		if (response.ok) {
 			showAlert('Link silindi', 'success');
 			loadLinks();
@@ -412,13 +412,12 @@ async function deleteLink(id) {
 // ========== SITE INFO ==========
 async function loadSiteInfo() {
 	try {
-		const response = await fetch('/api/site-info');
+		const response = await fetch('api/site-info.php');
 		const data = await response.json();
 
 		if (data.site_info) {
 			document.getElementById('about_text').value = data.site_info.about_text || '';
 			document.getElementById('contact_email').value = data.site_info.contact_email || '';
-			document.getElementById('contact_phone').value = data.site_info.contact_phone || '';
 			document.getElementById('contact_address').value = data.site_info.contact_address || '';
 		}
 	} catch (error) {
@@ -432,12 +431,11 @@ document.getElementById('site-info-form').addEventListener('submit', async (e) =
 	const data = {
 		about_text: document.getElementById('about_text').value,
 		contact_email: document.getElementById('contact_email').value,
-		contact_phone: document.getElementById('contact_phone').value,
 		contact_address: document.getElementById('contact_address').value
 	};
 
 	try {
-		const response = await fetch('/api/site-info', {
+		const response = await fetch('api/site-info.php', {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
