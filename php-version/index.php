@@ -156,7 +156,6 @@ require_once 'functions.php';
 			<h2 class="section-title">İletişim</h2>
 			<div class="contact-details">
 				<p><strong>E-posta:</strong> <a href="mailto:dogrumehmet@gmail.com" id="contact-email-link">dogrumehmet@gmail.com</a></p>
-				<p><strong>Telefon:</strong> <a href="tel:+905057810760" id="contact-phone-link">+90 505 781 07 60</a></p>
 				<p><strong>Adres:</strong> <span id="contact-address">İstanbul, Türkiye</span></p>
 			</div>
 			<div class="contact-form">
@@ -175,10 +174,6 @@ require_once 'functions.php';
 	</div>
 
 	<footer style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-		<img src="static/img/logo.png" alt="Doğru Hoca Logo" width="50" height="50" style="border-radius: 50%;" loading="lazy">
-		<p>&copy; 2024 Doğru Hoca - Tüm Hakları Saklıdır</p>
-		<img src="static/img/dvlp.cc.logo.png" alt="Developer Logo" width="70" height="70" style="border-radius: 50%;" loading="lazy">
-	</footer>
 
 	<script>
 		// User Dropdown Toggle
@@ -378,11 +373,6 @@ require_once 'functions.php';
 						const emailLink = document.getElementById('contact-email-link');
 						emailLink.textContent = data.site_info.contact_email;
 						emailLink.href = `mailto:${data.site_info.contact_email}`;
-					}
-					if (data.site_info.contact_phone) {
-						const phoneLink = document.getElementById('contact-phone-link');
-						phoneLink.textContent = data.site_info.contact_phone;
-						phoneLink.href = `tel:${data.site_info.contact_phone.replace(/\s/g, '')}`;
 					}
 					if (data.site_info.contact_address) {
 						document.getElementById('contact-address').textContent = data.site_info.contact_address;

@@ -167,10 +167,6 @@ requireAdmin();
                             <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="ornek@email.com">
                         </div>
                         <div class="form-group">
-                            <label for="contact_phone">Telefon Numarası</label>
-                            <input type="text" id="contact_phone" name="contact_phone" class="form-control" placeholder="+90 XXX XXX XX XX">
-                        </div>
-                        <div class="form-group">
                             <label for="contact_address">Adres</label>
                             <input type="text" id="contact_address" name="contact_address" class="form-control" placeholder="Şehir, Ülke">
                         </div>
