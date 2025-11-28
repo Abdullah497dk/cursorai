@@ -253,7 +253,7 @@ require_once 'functions.php';
 						} else if (id === 'linkler') {
 							loadLinks();
 							dataObserver.unobserve(entry.target);
-						} else if (id === 'iletisim') {
+						} else if (id === 'iletisim' || id === 'hakkimda') {
 							loadSiteInfo();
 							dataObserver.unobserve(entry.target);
 						}
@@ -262,7 +262,7 @@ require_once 'functions.php';
 			}, { rootMargin: '200px' }); // Load content 200px before it comes into view
 
 			// Observe sections for data loading
-			const sections = ['videolar', 'dokumanlar', 'linkler', 'iletisim'];
+			const sections = ['videolar', 'dokumanlar', 'linkler', 'iletisim', 'hakkimda'];
 			sections.forEach(id => {
 				const el = document.getElementById(id);
 				if (el) dataObserver.observe(el);
@@ -354,7 +354,11 @@ require_once 'functions.php';
 		}
 
 		// Load Site Info from API
+		let siteInfoLoaded = false;
 		async function loadSiteInfo() {
+			if (siteInfoLoaded) return;
+			siteInfoLoaded = true;
+
 			try {
 			const response = await fetch('api/site-info.php?_=' + new Date().getTime(), {
 			cache: 'no-store',
