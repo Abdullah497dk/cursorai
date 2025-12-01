@@ -13,6 +13,17 @@ header('Expires: 0');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Parse ID from URL
+$requestUri = $_SERVER['REQUEST_URI'];
+$id = null;
+if (preg_match('/\/api\/documents\.php\/(\d+)/', $requestUri, $matches)) {
+    $id = $matches[1];
+} elseif (preg_match('/\/api\/documents\/(\d+)/', $requestUri, $matches)) {
+    $id = $matches[1];
+} elseif (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+
 try {
     $pdo = getDB();
     
@@ -52,7 +63,7 @@ try {
             jsonResponse(['error' => 'Yetkiniz yok'], 403);
         }
         
-        $id = $_GET['id'] ?? null;
+        // $id is already parsed at the top
         if (!$id) {
             jsonResponse(['error' => 'ID gerekli'], 400);
         }
@@ -90,7 +101,7 @@ try {
             jsonResponse(['error' => 'Yetkiniz yok'], 403);
         }
         
-        $id = $_GET['id'] ?? null;
+        // $id is already parsed at the top
         if (!$id) {
             jsonResponse(['error' => 'ID gerekli'], 400);
         }
