@@ -227,6 +227,10 @@ nav.scrolled {
 	font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
+#about-text {
+	white-space: pre-line;
+}
+
 .video-container {
 	margin: 20px 0;
 	display: flex;
